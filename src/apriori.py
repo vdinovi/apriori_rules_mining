@@ -13,7 +13,7 @@ def support(T, item_set):
     for _, basket in T.items():
         if item_set.issubset(basket):
             x_subset_basket += 1 
-    return x_subset_basket / len(T)
+    return (1.0 * x_subset_basket) / len(T)
 
 def confidence(T, antecedent, consequent):
     return support(T, antecedence.union(consequent)) / support(T, antecedent)
@@ -47,7 +47,7 @@ def candidates_gen(f, k):
 
 def apriori(T, I, min_sup):
     freq_sets = []
-    freq_sets.append([frozenset([i]) for i in I if support(T, {i}) >= min_sup])
+    freq_sets.append([frozenset({i}) for i in I if support(T, {i}) >= min_sup])
     k = 2
     while freq_sets[-1]:
         candidates = candidates_gen(freq_sets[-1], k-1)
@@ -58,37 +58,27 @@ def apriori(T, I, min_sup):
                 counts[c] += 1
         freq_sets.append([c for c in candidates if (counts[c]/len(T) >= min_sup)])
         k += 1
-    return freq_sets
-
+    return [f for fs in freq_sets for f in fs]
 
 
 def gen_rules(F, min_conf):
     rules = []
-    for f in F:
+    singletons = [s for s in F if len(s) == 1]
+    for f in F - singletons:
         base = []
-        for s in f:
-            a = f.difference(s)
-            b = s
+        for b in f:
+            a = f - {b}
             if confidence(T, a, b) >= min_conf:
                 base.append((a, b))
-        rules += apGenRules(f, base)
+        rules += base
     return rules
-
-
-def test(baskets, cases):
-    #freq_itemsets = apriori(baskets, case[2], case[0])
-    #rules = gen_rules(freq_itemsets, minconf)
-    #actual   = ["{} --> {}".format(r[0], r[1]) for r in rules]
-    #expected = ["{} --> {}".format(r[2], r[3]) for r in rules]
-    #print("(sup={}, conf={}) found {} --> {}, expected {} --> {}".format()
-
 
 
 if __name__ == "__main__":
     baskets = parse_bakery('../dataset/1000/1000-out1.csv')
     item_set = [1,2,3]
-    min_sup = 0.1
-    min_conf = 0.5
+    min_sup = 0.01
+    #min_conf = 0.5
     #cases = [
     #        (.15, .95, ({1},     {49}),
     #        (.20, .95, ({15},    {36}), 
@@ -97,6 +87,8 @@ if __name__ == "__main__":
     #]
     #for i in cases:
     #    test(baskets, i)
-    freq_itemsets = apriori(baskets, item_set)
-    rules = gen_rules(freq_itemsets, min_conf)
+    freq_itemsets = apriori(baskets, baskets.keys(), min_sup)
+    pdb.set_trace()
+    #rules = gen_rules(freq_itemsets, min_conf)
+
 
