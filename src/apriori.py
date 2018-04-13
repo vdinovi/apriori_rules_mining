@@ -1,5 +1,7 @@
 import csv, pdb, itertools
 from pprint import pprint
+import matplotlib.pyplot as plt
+import math
 
 def parse_bakery(filename):
     baskets = {}
@@ -88,6 +90,53 @@ def gen_rules(F, T, min_conf, supports):
 def rules_to_str(rules):
     return ["{} ---> {}".format(r[0], r[1]) for r in rules]
 
+def plot_supp(dataset, supp_init, cutoff):
+    dx = 0.005
+    items = frozenset(dataset.keys())
+    min_supports = []
+    isets_found = []
+    supp = supp_init
+    supports = {}
+    while True:
+        freq_isets = get_skyline(apriori(dataset, items, supp, supports))
+        print("supp({}) -> {}".format(supp, len(freq_isets)))
+        min_supports.append(supp)
+        isets_found.append(len(freq_isets))
+        supp -= dx
+        if supp - dx < cutoff:
+            print("supp too low, ending")
+            break
+    plt.plot(min_supports, isets_found)
+    plt.xlabel("minimum support value")
+    plt.ylabel("freq item sets found")
+    plt.savefig("../support.png")
+
+
+def plot_conf(dataset, supp, conf_init, cutoff):
+    dx = 0.005
+    items = frozenset(dataset.keys())
+    min_confs = []
+    rules_found = []
+    conf = conf_init
+    supports = {}
+    skyline_freq_isets = get_skyline(apriori(dataset, items, supp, supports))
+    while True:
+        rules = gen_rules(skyline_freq_isets, baskets, conf, supports)
+        print("rules({}) -> {}".format(conf, len(rules)))
+        min_confs.append(conf)
+        rules_found.append(len(rules))
+        conf += dx
+        if conf + dx > cutoff:
+            print("conf too high, ending")
+            break
+    plt.plot(min_confs, rules_found)
+    plt.xlabel("minimum confidence value")
+    plt.ylabel("rules found")
+    plt.text(.75, .75, "min_supp={}".format(supp))
+    plt.savefig("../confidence.png")
+
+
+
 """
 lab-2-example-output
 
@@ -102,18 +151,15 @@ Rule 8:     12, 16   ---> 14    [sup=25.674326   conf=99.2278]
 Rule 9:     12, 14   ---> 16    [sup=25.674326   conf=95.89552]
 """
 
+
 if __name__ == "__main__":
     baskets = parse_bakery('../dataset/example/out1.csv')
-    min_sup = 0.13
-    min_conf = 0.79
-    items = set(baskets.keys())
-    supports = {}
-    freq_isets = apriori(baskets, items, min_sup, supports)
-    skyline_freq_isets = get_skyline(freq_isets)
-    rules = gen_rules(skyline_freq_isets, baskets, min_conf, supports)
-    print("minSupp={}, minConf={}".format(min_sup, min_conf))
-    print("Skyline Sets: ", skyline_freq_isets)
-    for r in rules_to_str(rules):
-        print(r)
+    #items = frozenset(baskets.keys())
+    #supports = {}
+    #freq_isets = apriori(baskets, items, min_sup, supports)
+    #skyline_freq_isets = get_skyline(freq_isets)
+    #rules = gen_rules(skyline_freq_isets, baskets, min_conf, supports)
+    #plot_supp(baskets, 0.3, 0.0261)
+    #plot_conf(baskets, 0.16, 0.5, 1.0)
 
 
