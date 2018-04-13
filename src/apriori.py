@@ -1,7 +1,6 @@
 import csv, pdb, itertools
 from pprint import pprint
 
-
 def parse_bakery(filename):
     baskets = {}
     with open(filename, 'r') as file:
@@ -37,7 +36,6 @@ def powerset(iterable):
 
 def candidates_gen(F, k):
     candidates = []
-    #for f1,f2 in (pair for pair in pairwise(F) if len(pair[0]) == len(pair[1]) == k):
     for f1 in F:
         if len(f1) != k:
             continue
@@ -87,6 +85,9 @@ def gen_rules(F, T, min_conf, supports):
         rules += base
     return rules
 
+def rules_to_str(rules):
+    return ["{} ---> {}".format(r[0], r[1]) for r in rules]
+
 """
 lab-2-example-output
 
@@ -100,21 +101,6 @@ Rule 7:     14, 16   ---> 12    [sup=25.674326   conf=99.612404]
 Rule 8:     12, 16   ---> 14    [sup=25.674326   conf=99.2278]
 Rule 9:     12, 14   ---> 16    [sup=25.674326   conf=95.89552]
 """
-
-
-"""
-Rules2.xml
-
-Rule 1:    1       ---> 49   [15, 95]
-Rule 2:    15      ---> 36   [20, 95]
-Rule 3:    9       ---> 22   [25, 95]
-Rule 4:    12, 14  ---> 16   [30, 95]
-"""
-
-def rules_to_str(rules):
-    return ["{} ---> {}".format(r[0], r[1]) for r in rules]
-
-
 
 if __name__ == "__main__":
     baskets = parse_bakery('../dataset/example/out1.csv')
