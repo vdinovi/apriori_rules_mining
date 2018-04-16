@@ -211,9 +211,6 @@ def mine_bakery(data_filename, goods_filename):
     write_named_rules("rules.txt", rules_w_conf, names)
     print("  -> wrote to rules.txt")
 
-from sys import argv
-import os
-
 import argparse
 
 if __name__ == "__main__":
@@ -226,7 +223,6 @@ if __name__ == "__main__":
     parser.add_argument("--rules", help="specify this with any value (ex: 1) to generate association rules")
     parser.add_argument("--plot", help="specify this with any value (ex: 1) to generate plots for min_supp and min_conf (warning: this makes the program very slow)")
     args = parser.parse_args()
-    print(args)
 
     baskets = parse_data_file(args.data_file)
     names = parse_name_file(args.name_file)
