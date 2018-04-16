@@ -17,8 +17,8 @@ def parse_name_file(filename):
         reader = csv.DictReader(file)
         for row in reader:
             key = int(row.pop('Id'))
-            if key in result:
-                pass
+            for k, v in row.items():
+                row[k] = v.replace("'", "")
             result[key] = row
     return result
 
@@ -151,21 +151,23 @@ def plot_conf(plot_filename, text_filename, dataset, supp, start_conf, end_conf)
     plt.text(2, 2, "min_supp={}".format(supp))
     plt.savefig(plot_filename)
 
+
 def write_named_freq_isets(filename, freq_isets, names):
     with open(filename, 'w') as file:
         freq_isets = sorted(freq_isets, key=lambda i: -i[0])
         file.write('Skyline Frequent Itemsets ({})\n'.format(len(freq_isets)))
         for s in freq_isets:
-            named_set = { names[i]['Food'] for i in s[1] }
+            named_set = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in s[1] }
             file.write("({:03f}) {:>12}\n".format(s[0], str(named_set)))
+
 
 def write_named_rules(filename, rules, names):
     with open(filename, 'w') as file:
         rules = sorted(rules, key=lambda r: -r[0])
         file.write('Skyline Rules ({})\n'.format(len(rules)))
         for r in rules:
-            named_left = { names[i]['Food'] for i in r[1][0] }
-            named_right = { names[i]['Food'] for i in r[1][1] }
+            named_left = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in r[1][0] }
+            named_right = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in r[1][1] }
             rule_str = "{} --> {}".format(named_left, named_right)
             file.write("({:03f}) {:>12}\n".format(r[0], rule_str))
 
@@ -183,7 +185,7 @@ def mine_bakery(data_filename, goods_filename):
     start_conf = 1.0 # when to start plot
     end_conf = 0.5 # when to end plot
     min_sup = 0.007 # actual min support (derived from analysis)
-    min_conf = 0.562  # actual min confidence
+    min_conf = 0.74  # actual min confidence
 
     baskets = parse_data_file(data_filename)
     names = parse_name_file(goods_filename)
@@ -193,7 +195,6 @@ def mine_bakery(data_filename, goods_filename):
     print("plotting confidences...")
     plot_conf("confidence.png", "confidence.txt", baskets, min_sup, start_conf, end_conf)
     """
-
     print("generating rules...")
     supports = {}
     items = frozenset(baskets.keys())
@@ -209,7 +210,7 @@ def mine_bakery(data_filename, goods_filename):
     write_named_rules("rules.txt", rules_w_conf, names)
 
 if __name__ == "__main__":
-    mine_bakery('../dataset/20000/20000-out1.csv', '../dataset/goods.csv')
+    mine_bakery('../dataset/75000/75000-out1.csv', '../dataset/goods.csv')
  
 
 
