@@ -102,29 +102,30 @@ def gen_rules(F, T, min_conf, supports):
         rules += base
     return rules
 
-def plot_supp(filename, dataset, start_supp, end_supp):
+def plot_supp(plot_filename, text_filename, dataset, start_supp, end_supp):
     dx = 0.001
     supp = start_supp
     items = frozenset(dataset.keys())
     min_supports = []
     isets_found = []
     supports = {}
-    while True:
-        freq_isets = get_skyline(apriori(dataset, items, supp, supports))
-        min_supports.append(supp)
-        isets_found.append(len(freq_isets))
-        print("  {:08f} -> {}".format(supp, len(freq_isets)))
-        supp -= dx
-        if supp - dx < end_supp:
-            break
+    with open(text_filename, 'w') as file:
+        while True:
+            freq_isets = get_skyline(apriori(dataset, items, supp, supports))
+            min_supports.append(supp)
+            isets_found.append(len(freq_isets))
+            file.write("  {:08f} -> {}\n".format(supp, len(freq_isets)))
+            supp -= dx
+            if supp - dx < end_supp:
+                break
     plt.clf()
     plt.plot(min_supports, isets_found)
     plt.xlabel("minimum support value")
     plt.ylabel("freq item sets found")
-    plt.savefig(filename)
+    plt.savefig(plot_filename)
 
 
-def plot_conf(filename, dataset, supp, start_conf, end_conf):
+def plot_conf(plot_filename, text_filename, dataset, supp, start_conf, end_conf):
     dx = 0.001
     items = frozenset(dataset.keys())
     conf = start_conf
@@ -132,20 +133,21 @@ def plot_conf(filename, dataset, supp, start_conf, end_conf):
     rules_found = []
     supports = {}
     skyline_freq_isets = get_skyline(apriori(dataset, items, supp, supports))
-    while True:
-        rules = gen_rules(skyline_freq_isets, baskets, conf, supports)
-        min_confs.append(conf)
-        rules_found.append(len(rules))
-        print("  {:08f} -> {}".format(conf, len(rules)))
-        conf -= dx
-        if conf + dx < end_conf:
-            break
+    with open(text_filename, 'w') as file :
+        while True:
+            rules = gen_rules(skyline_freq_isets, dataset, conf, supports)
+            min_confs.append(conf)
+            rules_found.append(len(rules))
+            file.write("  {:08f} -> {}\n".format(conf, len(rules)))
+            conf -= dx
+            if conf - dx < end_conf:
+                break
     plt.clf()
     plt.plot(min_confs, rules_found)
     plt.xlabel("minimum confidence value")
     plt.ylabel("rules found")
     plt.text(2, 2, "min_supp={}".format(supp))
-    plt.savefig(filename)
+    plt.savefig(plot_filename)
 
 def write_named_freq_isets(filename, freq_isets, names):
     with open(filename, 'w') as file:
@@ -165,8 +167,14 @@ def write_named_rules(filename, rules, names):
             rule_str = "{} --> {}".format(named_left, named_right)
             file.write("({:03f}) {:>12}\n".format(r[0], rule_str))
 
-
-if __name__ == "__main__":
+"""
+Generates:
+    (1) Plot file and text file of for found item sets for supports in a given range
+    (2) Plot file and text file of for found rules for confidences in a given range
+    (3) List of skyline frequent item sets in named form
+    (4) List of skyline rules in named form
+"""
+def mine_bakery(data_filename, goods_filename):
     # Change these as needed
     start_sup = 0.2  # when to start plot
     end_sup = 0.0 # when to end plot (eventually becomes too slow)
@@ -175,12 +183,12 @@ if __name__ == "__main__":
     end_conf = 0.5 # when to end plot
     min_conf = 0.828  # actual min confidence
 
-    baskets = parse_data_file('../dataset/1000/1000-out1.csv')
-    names = parse_name_file('../dataset/goods.csv')
+    baskets = parse_data_file(data_filename)
+    names = parse_name_file(goods_filename)
     print("plotting supports...")
-    plot_supp("support.png", baskets, start_sup, end_sup)
+    plot_supp("support.png", "support.txt", baskets, start_sup, end_sup)
     print("plotting confidences...")
-    plot_conf("confidence.png", baskets, min_sup, start_conf, end_conf)
+    plot_conf("confidence.png", "confidence.txt", baskets, min_sup, start_conf, end_conf)
 
     print("generating rules...")
     supports = {}
@@ -196,8 +204,9 @@ if __name__ == "__main__":
     rules_w_conf = [(confidence(baskets, r[0], r[1], supports), r) for r in rules]
     write_named_rules("rules.txt", rules_w_conf, names)
 
-
-
+if __name__ == "__main__":
+    mine_bakery('../dataset/1000/1000-out1.csv', '../dataset/goods.csv')
+ 
 
 
 
