@@ -1,0 +1,66 @@
+Skyline Frequent Itemsets (65)
+(0.095400) {"'Cookie'"}
+(0.092000)   {"'Tart'"}
+(0.085200)   {"'Tart'"}
+(0.083600)   {"'Cake'"}
+(0.082200) {"'Croissant'"}
+(0.080800) {"'Coffee'"}
+(0.077200)  {"'Water'"}
+(0.077000) {"'Croissant'"}
+(0.074600)   {"'Cake'"}
+(0.065400) {"'Espresso'"}
+(0.064000) {"'Cookie'"}
+(0.049600) {"'Cookie'"}
+(0.047200) {"'Cookie'", "'Cake'"}
+(0.046000) {"'Eclair'"}
+(0.045600) {"'Croissant'"}
+(0.045200) {"'Meringue'"}
+(0.044400)   {"'Tart'"}
+(0.044000) {"'Tart'", "'Croissant'"}
+(0.043200) {"'Croissant'"}
+(0.043000) {"'Juice'", "'Croissant'"}
+(0.042800) {"'Bear Claw'"}
+(0.042200)   {"'Tart'"}
+(0.042200)   {"'Cake'"}
+(0.040800) {"'Danish'", "'Tart'", "'Cake'"}
+(0.040000) {"'Danish'"}
+(0.039800) {"'Meringue'"}
+(0.039400) {"'Pie'", "'Twist'"}
+(0.038800) {"'Cookie'"}
+(0.038600)   {"'Tart'"}
+(0.038200) {"'Pie'", "'Eclair'", "'Twist'"}
+(0.038200) {"'Eclair'"}
+(0.036600) {"'Water'", "'Tart'"}
+(0.035600) {"'Eclair'", "'Tart'"}
+(0.035000) {"'Coffee'", "'Tart'"}
+(0.034800) {"'Frappuccino'", "'Tart'"}
+(0.034800) {"'Coffee'", "'Croissant'"}
+(0.034600) {"'Coffee'", "'Cake'"}
+(0.033600) {"'Tart'", "'Cake'"}
+(0.033000) {"'Danish'", "'Croissant'"}
+(0.032800) {"'Coffee'", "'Croissant'", "'Tart'"}
+(0.030800) {"'Coffee'", "'Twist'", "'Eclair'"}
+(0.030800) {"'Coffee'", "'Pie'", "'Eclair'"}
+(0.030800) {"'Coffee'", "'Pie'", "'Twist'"}
+(0.030800) {"'Coffee'", "'Pie'", "'Eclair'", "'Twist'"}
+(0.029800) {"'Cookie'", "'Frappuccino'"}
+(0.029600) {"'Eclair'", "'Espresso'"}
+(0.028600) {"'Cookie'", "'Tart'"}
+(0.028600) {"'Eclair'", "'Espresso'", "'Tart'"}
+(0.028000) {"'Lemonade'"}
+(0.026600) {"'Cookie'", "'Frappuccino'", "'Tart'"}
+(0.026400) {"'Cookie'", "'Lemonade'"}
+(0.026200) {"'Cookie'", "'Lemonade'"}
+(0.026200) {"'Cookie'", "'Lemonade'"}
+(0.025200) {"'Soda'", "'Croissant'"}
+(0.025000) {"'Danish'", "'Soda'"}
+(0.022800) {"'Danish'", "'Soda'", "'Tart'", "'Croissant'"}
+(0.021400) {"'Cookie'", "'Lemonade'", "'Tea'"}
+(0.021400) {"'Cookie'", "'Tea'"}
+(0.021200) {"'Lemonade'", "'Tea'"}
+(0.021200) {"'Cookie'", "'Lemonade'", "'Tea'"}
+(0.021200) {"'Cookie'", "'Lemonade'", "'Tea'"}
+(0.021200) {"'Cookie'", "'Lemonade'", "'Tea'"}
+(0.021200) {"'Cookie'", "'Lemonade'", "'Tea'"}
+(0.021200) {"'Cookie'", "'Lemonade'", "'Tea'"}
+(0.021200) {"'Cookie'", "'Lemonade'", "'Tea'"}

@@ -1,0 +1,76 @@
+Skyline Rules (75)
+(1.000000) {"'Lemonade'", "'Tea'"} --> {"'Cookie'"}
+(1.000000) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Lemonade'"}
+(1.000000) {"'Danish'", "'Soda'", "'Tart'"} --> {"'Croissant'"}
+(1.000000) {"'Cookie'", "'Lemonade'"} --> {"'Cookie'"}
+(1.000000) {"'Cookie'", "'Lemonade'"} --> {"'Lemonade'"}
+(1.000000) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Cookie'"}
+(1.000000) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Cookie'"}
+(1.000000) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Cookie'"}
+(1.000000) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Lemonade'"}
+(1.000000) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Lemonade'"}
+(1.000000) {"'Lemonade'", "'Tea'"} --> {"'Cookie'"}
+(1.000000) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Cookie'"}
+(1.000000) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Lemonade'"}
+(1.000000) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Lemonade'"}
+(1.000000) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Cookie'"}
+(1.000000) {"'Coffee'", "'Twist'", "'Eclair'"} --> {"'Pie'"}
+(1.000000) {"'Coffee'", "'Pie'", "'Eclair'"} --> {"'Twist'"}
+(1.000000) {"'Coffee'", "'Pie'", "'Twist'"} --> {"'Eclair'"}
+(0.992424) {"'Cookie'", "'Lemonade'"} --> {"'Lemonade'"}
+(0.992424) {"'Cookie'", "'Lemonade'"} --> {"'Cookie'"}
+(0.991304) {"'Soda'", "'Tart'", "'Croissant'"} --> {"'Danish'"}
+(0.991304) {"'Danish'", "'Soda'", "'Croissant'"} --> {"'Tart'"}
+(0.990654) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Lemonade'"}
+(0.990654) {"'Cookie'", "'Tea'"} --> {"'Lemonade'"}
+(0.990654) {"'Cookie'", "'Tea'"} --> {"'Lemonade'"}
+(0.990654) {"'Cookie'", "'Lemonade'", "'Tea'"} --> {"'Cookie'"}
+(0.969543) {"'Pie'", "'Twist'"} --> {"'Eclair'"}
+(0.966216) {"'Eclair'", "'Espresso'"} --> {"'Tart'"}
+(0.944444) {"'Danish'", "'Cake'"} --> {"'Tart'"}
+(0.942857) {"'Lemonade'"} --> {"'Cookie'"}
+(0.942857) {"'Cookie'", "'Lemonade'"} --> {"'Lemonade'"}
+(0.942529) {"'Coffee'", "'Croissant'"} --> {"'Tart'"}
+(0.942446) {"'Cookie'", "'Lemonade'"} --> {"'Lemonade'"}
+(0.940887) {"'Pie'", "'Eclair'"} --> {"'Twist'"}
+(0.937143) {"'Coffee'", "'Tart'"} --> {"'Croissant'"}
+(0.935780) {"'Tart'", "'Cake'"} --> {"'Danish'"}
+(0.935714) {"'Lemonade'"} --> {"'Cookie'"}
+(0.930435) {"'Lemonade'", "'Tea'"} --> {"'Cookie'"}
+(0.930070) {"'Cookie'", "'Tart'"} --> {"'Frappuccino'"}
+(0.927184) {"'Twist'", "'Eclair'"} --> {"'Pie'"}
+(0.923077) {"'Cookie'", "'Lemonade'"} --> {"'Lemonade'"}
+(0.922414) {"'Cookie'", "'Tea'"} --> {"'Cookie'"}
+(0.921739) {"'Lemonade'", "'Tea'"} --> {"'Lemonade'"}
+(0.916667) {"'Coffee'", "'Twist'"} --> {"'Eclair'"}
+(0.916667) {"'Coffee'", "'Pie'"} --> {"'Eclair'"}
+(0.916667) {"'Coffee'", "'Twist'"} --> {"'Pie'"}
+(0.916667) {"'Coffee'", "'Pie'"} --> {"'Twist'"}
+(0.916084) {"'Cookie'", "'Lemonade'"} --> {"'Lemonade'"}
+(0.913793) {"'Cookie'", "'Tea'"} --> {"'Lemonade'"}
+(0.911243) {"'Coffee'", "'Eclair'"} --> {"'Twist'"}
+(0.911243) {"'Coffee'", "'Eclair'"} --> {"'Pie'"}
+(0.910828) {"'Espresso'", "'Tart'"} --> {"'Eclair'"}
+(0.899160) {"'Cookie'", "'Tea'"} --> {"'Lemonade'"}
+(0.899160) {"'Cookie'", "'Tea'"} --> {"'Cookie'"}
+(0.892617) {"'Cookie'", "'Frappuccino'"} --> {"'Tart'"}
+(0.868852) {"'Lemonade'", "'Tea'"} --> {"'Lemonade'"}
+(0.868852) {"'Lemonade'", "'Tea'"} --> {"'Cookie'"}
+(0.809160) {"'Cookie'", "'Lemonade'"} --> {"'Tea'"}
+(0.809160) {"'Cookie'", "'Lemonade'"} --> {"'Tea'"}
+(0.809160) {"'Cookie'", "'Lemonade'"} --> {"'Tea'"}
+(0.806283) {"'Pie'", "'Eclair'", "'Twist'"} --> {"'Coffee'"}
+(0.803371) {"'Eclair'", "'Tart'"} --> {"'Espresso'"}
+(0.803030) {"'Cookie'", "'Lemonade'"} --> {"'Tea'"}
+(0.803030) {"'Cookie'", "'Lemonade'"} --> {"'Tea'"}
+(0.796875) {"'Danish'", "'Tart'"} --> {"'Cake'"}
+(0.781726) {"'Pie'", "'Twist'"} --> {"'Coffee'"}
+(0.765101) {"'Danish'", "'Tart'", "'Croissant'"} --> {"'Soda'"}
+(0.764368) {"'Frappuccino'", "'Tart'"} --> {"'Cookie'"}
+(0.764286) {"'Cookie'", "'Lemonade'"} --> {"'Tea'"}
+(0.758621) {"'Pie'", "'Eclair'"} --> {"'Coffee'"}
+(0.757143) {"'Lemonade'"} --> {"'Tea'"}
+(0.753521) {"'Cookie'"} --> {"'Tea'"}
+(0.747573) {"'Twist'", "'Eclair'"} --> {"'Coffee'"}
+(0.745455) {"'Croissant'", "'Tart'"} --> {"'Coffee'"}
+(0.741259) {"'Cookie'", "'Lemonade'"} --> {"'Tea'"}

@@ -114,7 +114,8 @@ def plot_supp(plot_filename, text_filename, dataset, start_supp, end_supp):
             freq_isets = get_skyline(apriori(dataset, items, supp, supports))
             min_supports.append(supp)
             isets_found.append(len(freq_isets))
-            file.write("  {:08f} -> {}\n".format(supp, len(freq_isets)))
+            file.write("{:08f} -> {}\n".format(supp, len(freq_isets)))
+            print("  {:08f} -> {}".format(supp, len(freq_isets)))
             supp -= dx
             if supp - dx < end_supp:
                 break
@@ -138,7 +139,8 @@ def plot_conf(plot_filename, text_filename, dataset, supp, start_conf, end_conf)
             rules = gen_rules(skyline_freq_isets, dataset, conf, supports)
             min_confs.append(conf)
             rules_found.append(len(rules))
-            file.write("  {:08f} -> {}\n".format(conf, len(rules)))
+            file.write("{:08f} -> {}\n".format(conf, len(rules)))
+            print("  {:08f} -> {}".format(conf, len(rules)))
             conf -= dx
             if conf - dx < end_conf:
                 break
@@ -178,17 +180,19 @@ def mine_bakery(data_filename, goods_filename):
     # Change these as needed
     start_sup = 0.2  # when to start plot
     end_sup = 0.0 # when to end plot (eventually becomes too slow)
-    min_sup = 0.0135 # actual min support (derived from analysis)
     start_conf = 1.0 # when to start plot
     end_conf = 0.5 # when to end plot
-    min_conf = 0.828  # actual min confidence
+    min_sup = 0.007 # actual min support (derived from analysis)
+    min_conf = 0.562  # actual min confidence
 
     baskets = parse_data_file(data_filename)
     names = parse_name_file(goods_filename)
+    """
     print("plotting supports...")
     plot_supp("support.png", "support.txt", baskets, start_sup, end_sup)
     print("plotting confidences...")
     plot_conf("confidence.png", "confidence.txt", baskets, min_sup, start_conf, end_conf)
+    """
 
     print("generating rules...")
     supports = {}
@@ -205,7 +209,7 @@ def mine_bakery(data_filename, goods_filename):
     write_named_rules("rules.txt", rules_w_conf, names)
 
 if __name__ == "__main__":
-    mine_bakery('../dataset/1000/1000-out1.csv', '../dataset/goods.csv')
+    mine_bakery('../dataset/20000/20000-out1.csv', '../dataset/goods.csv')
  
 
 
