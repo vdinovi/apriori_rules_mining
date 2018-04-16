@@ -3,13 +3,24 @@ from pprint import pprint
 import matplotlib.pyplot as plt
 import math
 
-def parse_bakery(filename):
+def parse_data_file(filename):
     baskets = {}
     with open(filename, 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             baskets[int(row[0])] = set(map(lambda x: int(x), row[1:]))
     return baskets
+
+def parse_name_file(filename):
+    result = {}
+    with open(filename, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            key = int(row.pop('Id'))
+            if key in result:
+                pass
+            result[key] = row
+    return result
 
 def support(T, item_set, supports):
     count = 0
@@ -36,23 +47,27 @@ def powerset(iterable):
     s = list(iterable)
     return itertools.chain.from_iterable(itertools.combinations(s, r) for r in range(len(s)+1))
 
+#import line_profiler
+#@profile
 def candidates_gen(F, k):
     candidates = []
     for f1 in F:
-        if len(f1) != k:
+        f1_len = len(f1)
+        if f1_len != k:
             continue
         for f2 in F:
-            if len(f1) != len(f2):
+            f2_len = len(f2)
+            if f1_len != f2_len:
                 continue
-            c = f1.union(f2)
-            if len(c) == len(f1) + 1:
+            c = f1 | f2
+            if len(c) == f1_len + 1:
                 flag = True
                 for s in powerset(c):
                     if len(s) == len(c) - 1 and (set(s) not in F):
                         flag = False
                 if flag:
                     candidates.append(c)
-    return candidates
+    return set(candidates)
 
 def apriori(T, I, min_sup, supports):
     freq_sets = [[], [frozenset({i}) for i in I if support(T, {i}, supports) >= min_sup]]
@@ -63,7 +78,8 @@ def apriori(T, I, min_sup, supports):
         for _, basket in T.items():
             for c in (c for c in candidates if c.issubset(basket)):
                 counts[c] += 1
-        freq_sets.append([c for c in candidates if (counts[c]/len(T) >= min_sup)])
+        g = [c for c in candidates if ((1.0 * counts[c]/len(T)) >= min_sup)]
+        freq_sets.append(g)
         k += 1
     return [set(f) for fs in freq_sets for f in fs]
 
@@ -87,10 +103,7 @@ def gen_rules(F, T, min_conf, supports):
         rules += base
     return rules
 
-def rules_to_str(rules):
-    return ["{} ---> {}".format(r[0], r[1]) for r in rules]
-
-def plot_supp(dataset, supp_init, cutoff):
+def plot_supp(filename, dataset, supp_init, cutoff):
     dx = 0.005
     items = frozenset(dataset.keys())
     min_supports = []
@@ -99,21 +112,19 @@ def plot_supp(dataset, supp_init, cutoff):
     supports = {}
     while True:
         freq_isets = get_skyline(apriori(dataset, items, supp, supports))
-        print("supp({}) -> {}".format(supp, len(freq_isets)))
         min_supports.append(supp)
         isets_found.append(len(freq_isets))
         supp -= dx
         if supp - dx < cutoff:
-            print("supp too low, ending")
             break
     plt.plot(min_supports, isets_found)
     plt.xlabel("minimum support value")
     plt.ylabel("freq item sets found")
-    plt.savefig("../support.png")
+    plt.savefig(filename)
 
 
-def plot_conf(dataset, supp, conf_init, cutoff):
-    dx = 0.005
+def plot_conf(filename, dataset, supp, conf_init, cutoff):
+    dx = 0.0005
     items = frozenset(dataset.keys())
     min_confs = []
     rules_found = []
@@ -122,44 +133,65 @@ def plot_conf(dataset, supp, conf_init, cutoff):
     skyline_freq_isets = get_skyline(apriori(dataset, items, supp, supports))
     while True:
         rules = gen_rules(skyline_freq_isets, baskets, conf, supports)
-        print("rules({}) -> {}".format(conf, len(rules)))
         min_confs.append(conf)
         rules_found.append(len(rules))
-        conf += dx
-        if conf + dx > cutoff:
-            print("conf too high, ending")
+        conf -= dx
+        if conf + dx < cutoff:
             break
     plt.plot(min_confs, rules_found)
     plt.xlabel("minimum confidence value")
     plt.ylabel("rules found")
-    plt.text(.75, .75, "min_supp={}".format(supp))
-    plt.savefig("../confidence.png")
+    plt.text(2, 2, "min_supp={}".format(supp))
+    plt.savefig(filename)
 
+def write_named_freq_isets(filename, freq_isets, names):
+    with open(filename, 'w') as file:
+        freq_isets = sorted(freq_isets, key=lambda i: -i[0])
+        file.write('Skyline Frequent Itemsets ({})\n'.format(len(freq_isets)))
+        for s in freq_isets:
+            named_set = { names[i]['Food'] for i in s[1] }
+            file.write("({:03f}) {:>12}\n".format(s[0], str(named_set)))
 
-
-"""
-lab-2-example-output
-
-Rule 1:     36   ---> 15    [sup=13.886113   conf=79.88506]
-Rule 2:     15   ---> 36    [sup=13.886113   conf=75.13513]
-Rule 3:     22   ---> 9    [sup=18.081919   conf=84.18605]
-Rule 4:     9   ---> 22    [sup=18.081919   conf=80.44444]
-Rule 5:     49   ---> 1    [sup=12.687312   conf=78.395065]
-Rule 6:     1   ---> 49    [sup=12.687312   conf=81.410255]
-Rule 7:     14, 16   ---> 12    [sup=25.674326   conf=99.612404]
-Rule 8:     12, 16   ---> 14    [sup=25.674326   conf=99.2278]
-Rule 9:     12, 14   ---> 16    [sup=25.674326   conf=95.89552]
-"""
+def write_named_rules(filename, rules, names):
+    with open(filename, 'w') as file:
+        rules = gen_rules(freq_isets, baskets, min_conf, supports)
+        rules = [(confidence(baskets, r[0], r[1], supports), r) for r in rules]
+        rules = sorted(rules, key=lambda r: -r[0])
+        file.write('Skyline Rules ({})\n'.format(len(rules)))
+        for r in rules:
+            named_left = { names[i]['Food'] for i in r[1][0] }
+            named_right = { names[i]['Food'] for i in r[1][1] }
+            rule_str = "{} --> {}".format(named_left, named_right)
+            file.write("({:03f}) {:>12}\n".format(r[0], rule_str))
 
 
 if __name__ == "__main__":
-    baskets = parse_bakery('../dataset/example/out1.csv')
-    #items = frozenset(baskets.keys())
-    #supports = {}
-    #freq_isets = apriori(baskets, items, min_sup, supports)
-    #skyline_freq_isets = get_skyline(freq_isets)
-    #rules = gen_rules(skyline_freq_isets, baskets, min_conf, supports)
-    #plot_supp(baskets, 0.3, 0.0261)
-    #plot_conf(baskets, 0.16, 0.5, 1.0)
+    min_sup = 0.0135
+    min_conf = 0.828 
+    baskets = parse_data_file('../dataset/1000/1000-out1.csv')
+    names = parse_name_file('../dataset/goods.csv')
+    print("plotting supports...")
+    plot_supp("support.png", baskets, 0.4, 0.0261)
+    print("plotting confidences...")
+    plot_conf("conf.png", baskets, min_sup, 1, 0.5)
+
+    print("generating rules...")
+    supports = {}
+    items = frozenset(baskets.keys())
+    freq_isets = apriori(baskets, items, min_sup, supports)
+    sky_freq_isets = get_skyline(freq_isets)
+    rules = gen_rules(sky_freq_isets, baskets, min_conf, supports)
+
+    freq_isets_w_support = [(support(baskets, frozenset(s), supports), s) for s in sky_freq_isets]
+    print("writing freq isets...")
+    write_named_freq_isets("freq_isets.txt", freq_isets_w_support, names)
+    print("writing rules...")
+    write_named_rules("rules.txt", rules, names)
+
+
+
+
+
+
 
 
