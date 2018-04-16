@@ -103,7 +103,7 @@ def gen_rules(F, T, min_conf, supports):
     return rules
 
 def plot_supp(plot_filename, text_filename, dataset, start_supp, end_supp):
-    dx = 0.001
+    dx = 0.005
     supp = start_supp
     items = frozenset(dataset.keys())
     min_supports = []
@@ -115,7 +115,7 @@ def plot_supp(plot_filename, text_filename, dataset, start_supp, end_supp):
             min_supports.append(supp)
             isets_found.append(len(freq_isets))
             file.write("{:08f} -> {}\n".format(supp, len(freq_isets)))
-            print("  {:08f} -> {}".format(supp, len(freq_isets)))
+            #print("  {:08f} -> {}".format(supp, len(freq_isets)))
             supp -= dx
             if supp - dx < end_supp:
                 break
@@ -127,7 +127,7 @@ def plot_supp(plot_filename, text_filename, dataset, start_supp, end_supp):
 
 
 def plot_conf(plot_filename, text_filename, dataset, supp, start_conf, end_conf):
-    dx = 0.001
+    dx = 0.005
     items = frozenset(dataset.keys())
     conf = start_conf
     min_confs = []
@@ -140,7 +140,7 @@ def plot_conf(plot_filename, text_filename, dataset, supp, start_conf, end_conf)
             min_confs.append(conf)
             rules_found.append(len(rules))
             file.write("{:08f} -> {}\n".format(conf, len(rules)))
-            print("  {:08f} -> {}".format(conf, len(rules)))
+            #print("  {:08f} -> {}".format(conf, len(rules)))
             conf -= dx
             if conf - dx < end_conf:
                 break
@@ -189,13 +189,12 @@ def mine_bakery(data_filename, goods_filename):
 
     baskets = parse_data_file(data_filename)
     names = parse_name_file(goods_filename)
-    """
     print("plotting supports...")
     plot_supp("support.png", "support.txt", baskets, start_sup, end_sup)
+    print("  -> wrote to support.png, support.txt")
     print("plotting confidences...")
     plot_conf("confidence.png", "confidence.txt", baskets, min_sup, start_conf, end_conf)
-    """
-    print("generating rules...")
+    print("  -> wrote to confidence.png, confidence.txt")
     supports = {}
     items = frozenset(baskets.keys())
     freq_isets = apriori(baskets, items, min_sup, supports)
@@ -203,14 +202,22 @@ def mine_bakery(data_filename, goods_filename):
     rules = gen_rules(sky_freq_isets, baskets, min_conf, supports)
 
     freq_isets_w_support = [(support(baskets, frozenset(s), supports), s) for s in sky_freq_isets]
-    print("writing freq isets...")
+    print("generating freq isets...")
     write_named_freq_isets("freq_isets.txt", freq_isets_w_support, names)
-    print("writing rules...")
+    print("  -> wrote to freq_isets.txt")
+    print("generating rules...")
     rules_w_conf = [(confidence(baskets, r[0], r[1], supports), r) for r in rules]
     write_named_rules("rules.txt", rules_w_conf, names)
+    print("  -> wrote to rules.txt")
+
+from sys import argv
+import os
 
 if __name__ == "__main__":
-    mine_bakery('../dataset/75000/75000-out1.csv', '../dataset/goods.csv')
+    if len(argv) != 3:
+        print("usage: python apriori.py <data_file.csv> <name_file.csv>")
+    else:
+        mine_bakery(argv[1], argv[2])
  
 
 
