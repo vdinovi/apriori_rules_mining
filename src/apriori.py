@@ -2,6 +2,8 @@ import csv, pdb, itertools
 from pprint import pprint
 import matplotlib.pyplot as plt
 import math
+import re
+
 
 def parse_data_file(filename):
     baskets = {}
@@ -11,16 +13,49 @@ def parse_data_file(filename):
             baskets[int(row[0])] = set(map(lambda x: int(x), row[1:]))
     return baskets
 
-def parse_name_file(filename):
-    result = {}
-    with open(filename, 'r') as file:
+def parse_transcription_files(data_filename, gene_file, factors_file):
+    baskets = {}
+    genes = {}
+    factors = {}
+    with open(data_filename, 'r') as file:
         reader = csv.DictReader(file)
         for row in reader:
-            key = int(row.pop('Id'))
-            for k, v in row.items():
-                row[k] = v.replace("'", "")
-            result[key] = row
-    return result
+            gene = int(row.pop('expgene'))
+            factor = int(row.pop('tf_id'))
+            baskets[gene] = {gene, factor}
+    with open(gene_file, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            id = int(row.pop('expgene'))
+            genes[id] = ",".join([row.pop('geneabbrev'), row.pop('experiment'), row.pop('species')])
+    with open(factors_file, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            id = int(row.pop('tf_id'))
+            factors[id] = row.pop('transfac')
+    return baskets, genes, factors
+
+
+def parse_name_file(filename):
+    result = {}
+    if re.match(".*\.csv", filename):
+        with open(filename, 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                key = int(row.pop('Id'))
+                for k, v in row.items():
+                    row[k] = v.replace("'", "")
+                result[key] = row
+        return result
+    elif re.match(".*\.psv", filename):
+        with open(filename, 'r') as file:
+            for row in file.readlines():
+                line = row.split('|')
+                result[int(line[0].lstrip().rstrip())] = line[1].lstrip().rstrip()
+        return result
+    else:
+        print("filetype '{}' not recognized".format(filename))
+        exit()
 
 def support(T, item_set, supports):
     count = 0
@@ -103,7 +138,7 @@ def gen_rules(F, T, min_conf, supports):
     return rules
 
 def plot_supp(plot_filename, text_filename, dataset, start_supp, end_supp):
-    dx = 0.005
+    dx = 0.002
     supp = start_supp
     items = frozenset(dataset.keys())
     min_supports = []
@@ -115,7 +150,7 @@ def plot_supp(plot_filename, text_filename, dataset, start_supp, end_supp):
             min_supports.append(supp)
             isets_found.append(len(freq_isets))
             file.write("{:08f} -> {}\n".format(supp, len(freq_isets)))
-            #print("  {:08f} -> {}".format(supp, len(freq_isets)))
+            print("  {:08f} -> {}".format(supp, len(freq_isets)))
             supp -= dx
             if supp - dx < end_supp:
                 break
@@ -157,8 +192,25 @@ def write_named_freq_isets(filename, freq_isets, names):
         freq_isets = sorted(freq_isets, key=lambda i: -i[0])
         file.write('Skyline Frequent Itemsets ({})\n'.format(len(freq_isets)))
         for s in freq_isets:
-            named_set = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in s[1] }
+            first = next(iter(names))
+            if 'Flavor' in names[first] and 'Food' in names[first]:
+                named_set = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in s[1] }
+            else:
+                named_set = { names[i] for i in s[1] }
             file.write("({:03f}) {:>12}\n".format(s[0], str(named_set)))
+
+
+def write_named_freq_isets_transcription(filename, freq_isets, genes, factors):
+    with open(filename, 'w') as file:
+        freq_isets = sorted(freq_isets, key=lambda i: -i[0])
+        file.write('Skyline Frequent Itemsets ({})\n'.format(len(freq_isets)))
+        for s in freq_isets:
+            pdb.set_trace()
+            #first = next(iter(names))
+            #named_set = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in s[1] }
+            #file.write("({:03f}) {:>12}\n".format(s[0], str(named_set)))
+
+
 
 
 def write_named_rules(filename, rules, names):
@@ -166,17 +218,23 @@ def write_named_rules(filename, rules, names):
         rules = sorted(rules, key=lambda r: -r[0])
         file.write('Skyline Rules ({})\n'.format(len(rules)))
         for r in rules:
-            named_left = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in r[1][0] }
-            named_right = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in r[1][1] }
+            first = next(iter(names))
+            if 'Flavor' in names[first] and 'Food' in names[first]:
+                named_left = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in r[1][0] }
+                named_right = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in r[1][1] }
+            else:
+                named_left = { names[i] for i in r[1][0] }
+                named_right = { names[i] for i in r[1][1] }
+ 
             rule_str = "{} --> {}".format(named_left, named_right)
             file.write("({:03f}) {:>12}\n".format(r[0], rule_str))
 
 
 def plot(dataset, names, min_supp):
     start_sup = 0.4  # when to start plot
-    end_sup = 0.0 # when to end plot (eventually becomes too slow)
+    end_sup = 0.007 # when to end plot (eventually becomes too slow)
     start_conf = 1.0 # when to start plot
-    end_conf = 0.5 # when to end plot
+    end_conf = 0.3 # when to end plot
     print("plotting supports...")
     plot_supp("support.png", "support.txt", baskets, start_sup, end_sup)
     print("  -> wrote to support.png, support.txt")
@@ -212,24 +270,14 @@ def mine_bakery(data_filename, goods_filename):
     print("  -> wrote to rules.txt")
 
 import argparse
+from sys import argv
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("data_file", help="file containing the dataset")
-    parser.add_argument("min_supp", type=float, help="minimum support, must be in range 0-1")
-    parser.add_argument("min_conf", type=float, help="minimum confidence, must be in range 0-1")
-    parser.add_argument("name_file", help="file that maps IDs in data file to names")
-
-    parser.add_argument("--rules", help="specify this with any value (ex: 1) to generate association rules")
-    parser.add_argument("--plot", help="specify this with any value (ex: 1) to generate plots for min_supp and min_conf (warning: this makes the program very slow)")
-    args = parser.parse_args()
-
+def parse_normal(args):
     baskets = parse_data_file(args.data_file)
     names = parse_name_file(args.name_file)
 
     if args.plot:
         plot(baskets, names, args.min_supp)
-
 
     print("generating freq isets...")
     supports = {}
@@ -240,7 +288,6 @@ if __name__ == "__main__":
     write_named_freq_isets("freq_isets.txt", freq_isets_w_support, names)
     print("  -> wrote to freq_isets.txt")
 
-
     if args.rules:
         print("generating rules...")
         rules = gen_rules(sky_freq_isets, baskets, args.min_conf, supports)
@@ -248,4 +295,37 @@ if __name__ == "__main__":
         write_named_rules("rules.txt", rules_w_conf, names)
         print("  -> wrote to rules.txt")
 
+def parse_transcriptions(args):
+    baskets, genes, factors = parse_transcription_files(args.data_file, args.name_file, args.factors)
+
+    if args.plot:
+        plot(baskets, names, args.min_supp)
+
+    print("generating freq isets...")
+    supports = {}
+    items = frozenset(baskets.keys())
+    freq_isets = apriori(baskets, items, args.min_supp, supports)
+    sky_freq_isets = get_skyline(freq_isets)
+    freq_isets_w_support = [(support(baskets, frozenset(s), supports), s) for s in sky_freq_isets]
+    write_named_freq_isets_transcription("freq_isets.txt", freq_isets_w_support, genes, factors)
+    print("  -> wrote to freq_isets.txt")
+
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("data_file", help="file containing the dataset")
+    parser.add_argument("min_supp", type=float, help="minimum support, must be in range 0-1")
+    parser.add_argument("min_conf", type=float, help="minimum confidence, must be in range 0-1")
+    parser.add_argument("name_file", help="file that maps IDs in data file to names")
+
+    parser.add_argument("--factors", help="specificy this to the factors name file and include the gene file as name file in order to analyze transcriptions")
+    parser.add_argument("--rules", action='store_true', help="specify to generate association rules")
+    parser.add_argument("--plot", action='store_true', help="specify to generate plots for min_supp and min_conf (warning: this makes the program very slow)")
+    args = parser.parse_args()
+
+    if args.factors:
+        parse_transcriptions(args)
+    else:
+        parse_normal(args)
 
