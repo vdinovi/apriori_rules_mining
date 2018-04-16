@@ -21,45 +21,45 @@ Skyline Frequent Itemsets (65)
 (0.042000) {"'Croissant'"}
 (0.042000) {"'Danish'", "'Croissant'"}
 (0.041000)   {"'Tart'"}
-(0.040000) {"'Tart'", "'Cake'"}
-(0.040000) {"'Tart'", "'Croissant'"}
+(0.040000) {"'Cake'", "'Tart'"}
+(0.040000) {"'Croissant'", "'Tart'"}
 (0.040000)   {"'Tart'"}
-(0.039000) {"'Coffee'", "'Cake'"}
+(0.039000) {"'Cake'", "'Coffee'"}
 (0.038000) {"'Meringue'"}
-(0.038000) {"'Danish'", "'Tart'", "'Cake'"}
+(0.038000) {"'Danish'", "'Cake'", "'Tart'"}
 (0.038000) {"'Croissant'", "'Juice'"}
 (0.037000) {"'Eclair'"}
-(0.034000) {"'Tart'", "'Water'"}
+(0.034000) {"'Water'", "'Tart'"}
 (0.034000) {"'Eclair'"}
 (0.033000) {"'Danish'", "'Soda'"}
-(0.033000) {"'Soda'", "'Croissant'"}
-(0.033000) {"'Coffee'", "'Tart'"}
-(0.032000) {"'Coffee'", "'Croissant'"}
-(0.032000) {"'Coffee'", "'Tart'", "'Croissant'"}
-(0.031000) {"'Tart'", "'Eclair'"}
-(0.031000) {"'Danish'", "'Soda'", "'Tart'", "'Croissant'"}
+(0.033000) {"'Croissant'", "'Soda'"}
+(0.033000) {"'Tart'", "'Coffee'"}
+(0.032000) {"'Croissant'", "'Coffee'"}
+(0.032000) {"'Croissant'", "'Tart'", "'Coffee'"}
+(0.031000) {"'Eclair'", "'Tart'"}
+(0.031000) {"'Danish'", "'Tart'", "'Soda'", "'Croissant'"}
 (0.029000) {"'Lemonade'"}
 (0.029000) {"'Twist'", "'Pie'"}
 (0.028000) {"'Lemonade'", "'Cookie'"}
+(0.028000) {"'Cookie'", "'Lemonade'"}
 (0.028000) {"'Lemonade'", "'Cookie'"}
-(0.028000) {"'Lemonade'", "'Cookie'"}
-(0.027000) {"'Eclair'", "'Twist'", "'Pie'"}
+(0.027000) {"'Twist'", "'Eclair'", "'Pie'"}
 (0.026000) {"'Frappuccino'", "'Tart'"}
 (0.026000) {"'Bear Claw'"}
-(0.024000) {"'Coffee'", "'Eclair'", "'Twist'"}
-(0.024000) {"'Coffee'", "'Eclair'", "'Pie'"}
-(0.024000) {"'Espresso'", "'Eclair'"}
-(0.024000) {"'Coffee'", "'Twist'", "'Pie'"}
-(0.024000) {"'Coffee'", "'Eclair'", "'Twist'", "'Pie'"}
-(0.023000) {"'Espresso'", "'Tart'", "'Eclair'"}
+(0.024000) {"'Twist'", "'Eclair'", "'Coffee'"}
+(0.024000) {"'Eclair'", "'Pie'", "'Coffee'"}
+(0.024000) {"'Eclair'", "'Espresso'"}
+(0.024000) {"'Twist'", "'Pie'", "'Coffee'"}
+(0.024000) {"'Twist'", "'Eclair'", "'Pie'", "'Coffee'"}
+(0.023000) {"'Eclair'", "'Tart'", "'Espresso'"}
 (0.019000) {"'Tea'", "'Lemonade'", "'Cookie'"}
 (0.019000) {"'Tea'", "'Lemonade'"}
 (0.019000) {"'Tea'", "'Lemonade'", "'Cookie'"}
 (0.019000) {"'Tea'", "'Cookie'"}
+(0.019000) {"'Tea'", "'Cookie'", "'Lemonade'"}
 (0.019000) {"'Tea'", "'Lemonade'", "'Cookie'"}
 (0.019000) {"'Tea'", "'Lemonade'", "'Cookie'"}
-(0.019000) {"'Tea'", "'Lemonade'", "'Cookie'"}
-(0.019000) {"'Tea'", "'Lemonade'", "'Cookie'"}
+(0.019000) {"'Tea'", "'Cookie'", "'Lemonade'"}
 (0.019000) {"'Tea'", "'Lemonade'", "'Cookie'"}
 (0.018000) {"'Tart'", "'Cookie'"}
 (0.018000) {"'Frappuccino'", "'Cookie'"}
