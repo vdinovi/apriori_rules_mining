@@ -171,6 +171,21 @@ def write_named_rules(filename, rules, names):
             rule_str = "{} --> {}".format(named_left, named_right)
             file.write("({:03f}) {:>12}\n".format(r[0], rule_str))
 
+
+def plot(dataset, names, min_supp):
+    start_sup = 0.4  # when to start plot
+    end_sup = 0.0 # when to end plot (eventually becomes too slow)
+    start_conf = 1.0 # when to start plot
+    end_conf = 0.5 # when to end plot
+    print("plotting supports...")
+    plot_supp("support.png", "support.txt", baskets, start_sup, end_sup)
+    print("  -> wrote to support.png, support.txt")
+    print("plotting confidences...")
+    plot_conf("confidence.png", "confidence.txt", baskets, min_supp, start_conf, end_conf)
+    print("  -> wrote to confidence.png, confidence.txt")
+ 
+ 
+ 
 """
 Generates:
     (1) Plot file and text file of for found item sets for supports in a given range
@@ -179,22 +194,8 @@ Generates:
     (4) List of skyline rules in named form
 """
 def mine_bakery(data_filename, goods_filename):
-    # Change these as needed
-    start_sup = 0.2  # when to start plot
-    end_sup = 0.0 # when to end plot (eventually becomes too slow)
-    start_conf = 1.0 # when to start plot
-    end_conf = 0.5 # when to end plot
-    min_sup = 0.007 # actual min support (derived from analysis)
-    min_conf = 0.74  # actual min confidence
-
     baskets = parse_data_file(data_filename)
     names = parse_name_file(goods_filename)
-    print("plotting supports...")
-    plot_supp("support.png", "support.txt", baskets, start_sup, end_sup)
-    print("  -> wrote to support.png, support.txt")
-    print("plotting confidences...")
-    plot_conf("confidence.png", "confidence.txt", baskets, min_sup, start_conf, end_conf)
-    print("  -> wrote to confidence.png, confidence.txt")
     supports = {}
     items = frozenset(baskets.keys())
     freq_isets = apriori(baskets, items, min_sup, supports)
@@ -213,14 +214,42 @@ def mine_bakery(data_filename, goods_filename):
 from sys import argv
 import os
 
+import argparse
+
 if __name__ == "__main__":
-    if len(argv) != 3:
-        print("usage: python apriori.py <data_file.csv> <name_file.csv>")
-    else:
-        mine_bakery(argv[1], argv[2])
- 
+    parser = argparse.ArgumentParser()
+    parser.add_argument("data_file", help="file containing the dataset")
+    parser.add_argument("min_supp", type=float, help="minimum support, must be in range 0-1")
+    parser.add_argument("min_conf", type=float, help="minimum confidence, must be in range 0-1")
+    parser.add_argument("name_file", help="file that maps IDs in data file to names")
+
+    parser.add_argument("--rules", help="specify this with any value (ex: 1) to generate association rules")
+    parser.add_argument("--plot", help="specify this with any value (ex: 1) to generate plots for min_supp and min_conf (warning: this makes the program very slow)")
+    args = parser.parse_args()
+    print(args)
+
+    baskets = parse_data_file(args.data_file)
+    names = parse_name_file(args.name_file)
+
+    if args.plot:
+        plot(baskets, names, args.min_supp)
 
 
+    print("generating freq isets...")
+    supports = {}
+    items = frozenset(baskets.keys())
+    freq_isets = apriori(baskets, items, args.min_supp, supports)
+    sky_freq_isets = get_skyline(freq_isets)
+    freq_isets_w_support = [(support(baskets, frozenset(s), supports), s) for s in sky_freq_isets]
+    write_named_freq_isets("freq_isets.txt", freq_isets_w_support, names)
+    print("  -> wrote to freq_isets.txt")
 
+
+    if args.rules:
+        print("generating rules...")
+        rules = gen_rules(sky_freq_isets, baskets, args.min_conf, supports)
+        rules_w_conf = [(confidence(baskets, r[0], r[1], supports), r) for r in rules]
+        write_named_rules("rules.txt", rules_w_conf, names)
+        print("  -> wrote to rules.txt")
 
 
