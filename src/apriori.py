@@ -103,7 +103,7 @@ def gen_rules(F, T, min_conf, supports):
     return rules
 
 def plot_supp(filename, dataset, start_supp, end_supp):
-    dx = 0.005
+    dx = 0.001
     supp = start_supp
     items = frozenset(dataset.keys())
     min_supports = []
@@ -117,6 +117,7 @@ def plot_supp(filename, dataset, start_supp, end_supp):
         supp -= dx
         if supp - dx < end_supp:
             break
+    plt.clf()
     plt.plot(min_supports, isets_found)
     plt.xlabel("minimum support value")
     plt.ylabel("freq item sets found")
@@ -124,7 +125,7 @@ def plot_supp(filename, dataset, start_supp, end_supp):
 
 
 def plot_conf(filename, dataset, supp, start_conf, end_conf):
-    dx = 0.0005
+    dx = 0.001
     items = frozenset(dataset.keys())
     conf = start_conf
     min_confs = []
@@ -139,7 +140,7 @@ def plot_conf(filename, dataset, supp, start_conf, end_conf):
         conf -= dx
         if conf + dx < end_conf:
             break
-    pdb.set_trace()
+    plt.clf()
     plt.plot(min_confs, rules_found)
     plt.xlabel("minimum confidence value")
     plt.ylabel("rules found")
@@ -181,7 +182,6 @@ if __name__ == "__main__":
     print("plotting confidences...")
     plot_conf("confidence.png", baskets, min_sup, start_conf, end_conf)
 
-    """
     print("generating rules...")
     supports = {}
     items = frozenset(baskets.keys())
@@ -195,7 +195,6 @@ if __name__ == "__main__":
     print("writing rules...")
     rules_w_conf = [(confidence(baskets, r[0], r[1], supports), r) for r in rules]
     write_named_rules("rules.txt", rules_w_conf, names)
-    """
 
 
 
