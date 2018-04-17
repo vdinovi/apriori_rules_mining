@@ -13,19 +13,18 @@ def parse_data_file(filename):
             baskets[int(row[0])] = set(map(lambda x: int(x), row[1:]))
     return baskets
 
-def parse_t(data_file,gene_file,factors_file):
+def parse_t(data_file, gene_file, factors_file):
    baskets = {}
    genes = {}
    factors = {}
    with open(data_file, 'r') as file:
       reader = csv.DictReader(file)
-      #next(reader)
       for row in reader:
          gene = int(row.pop('expgene'))
          factorlist = row.pop(None)
          allfactors = []
          for i in range(0,len(factorlist)-1,2):
-            allfactors.append(i)
+             allfactors.append(i)
          baskets[gene] = set(allfactors)
    with open(factors_file, 'r') as file:
       reader = csv.DictReader(file)
@@ -139,12 +138,16 @@ def apriori(T, I, min_sup, supports):
     return [set(f) for fs in freq_sets for f in fs]
 
 def get_skyline(F):
-    uniq = {frozenset(s) for s in F}
+    items = {frozenset(s) for s in F}
     skyline = []
-    while uniq:
-        s = uniq.pop()
-        if all((not s.issubset(s1) for s1 in skyline)):
-            skyline.append(set(s))
+    for f in F:
+        flag = True
+        for f1 in F:
+            if f != f1 and f.issubset(f1):
+                flag = False
+                break
+        if flag:
+            skyline.append(f)
     return skyline
 
 def gen_rules(F, T, min_conf, supports):
@@ -196,7 +199,7 @@ def plot_conf(plot_filename, text_filename, dataset, supp, start_conf, end_conf)
             min_confs.append(conf)
             rules_found.append(len(rules))
             file.write("{:08f} -> {}\n".format(conf, len(rules)))
-            #print("  {:08f} -> {}".format(conf, len(rules)))
+            print("  {:08f} -> {}".format(conf, len(rules)))
             conf -= dx
             if conf - dx < end_conf:
                 break
@@ -226,12 +229,10 @@ def write_named_freq_isets_transcription(filename, freq_isets, genes, factors):
         freq_isets = sorted(freq_isets, key=lambda i: -i[0])
         file.write('Skyline Frequent Itemsets ({})\n'.format(len(freq_isets)))
         for s in freq_isets:
-            pdb.set_trace()
+            pass
             #first = next(iter(names))
             #named_set = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in s[1] }
             #file.write("({:03f}) {:>12}\n".format(s[0], str(named_set)))
-
-
 
 
 def write_named_rules(filename, rules, names):
@@ -264,6 +265,8 @@ def plot(baskets, names, min_supp):
     print("  -> wrote to confidence.png, confidence.txt")
  
  
+import argparse
+from sys import argv
  
 """
 Generates:
@@ -272,27 +275,6 @@ Generates:
     (3) List of skyline frequent item sets in named form
     (4) List of skyline rules in named form
 """
-def mine_bakery(data_filename, goods_filename):
-    baskets = parse_data_file(data_filename)
-    names = parse_name_file(goods_filename)
-    supports = {}
-    items = frozenset(baskets.keys())
-    freq_isets = apriori(baskets, items, min_sup, supports)
-    sky_freq_isets = get_skyline(freq_isets)
-    rules = gen_rules(sky_freq_isets, baskets, min_conf, supports)
-
-    freq_isets_w_support = [(support(baskets, frozenset(s), supports), s) for s in sky_freq_isets]
-    print("generating freq isets...")
-    write_named_freq_isets("freq_isets.txt", freq_isets_w_support, names)
-    print("  -> wrote to freq_isets.txt")
-    print("generating rules...")
-    rules_w_conf = [(confidence(baskets, r[0], r[1], supports), r) for r in rules]
-    write_named_rules("rules.txt", rules_w_conf, names)
-    print("  -> wrote to rules.txt")
-
-import argparse
-from sys import argv
-
 def parse_normal(args):
     baskets = parse_data_file(args.data_file)
     names = parse_name_file(args.name_file)
@@ -337,22 +319,6 @@ def parse_ts(args):
         write_named_rules("rules.txt", rules_w_conf, factors)
         print("  -> wrote to rules.txt")
 
-def parse_transcriptions(args):
-    baskets, genes, factors = parse_transcription_files(args.data_file, args.name_file, args.factors)
-    if args.plot:
-        plot(baskets, names, args.min_supp)
-
-    print("generating freq isets...")
-    supports = {}
-    items = frozenset(baskets.keys())
-    freq_isets = apriori(baskets, items, args.min_supp, supports)
-    sky_freq_isets = get_skyline(freq_isets)
-    freq_isets_w_support = [(support(baskets, frozenset(s), supports), s) for s in sky_freq_isets]
-    write_named_freq_isets_transcription("freq_isets.txt", freq_isets_w_support, genes, factors)
-    print("  -> wrote to freq_isets.txt")
-
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("data_file", help="file containing the dataset")
@@ -366,8 +332,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.factors:
-       parse_ts(args) 
-       #parse_transcriptions(args)
+        parse_ts(args) 
     else:
         parse_normal(args)
 
