@@ -24,7 +24,7 @@ def parse_t(data_file, gene_file, factors_file):
          factorlist = row.pop(None)
          allfactors = []
          for i in range(0,len(factorlist)-1,2):
-             allfactors.append(i)
+             allfactors.append(int(factorlist[i]))
          baskets[gene] = set(allfactors)
    with open(factors_file, 'r') as file:
       reader = csv.DictReader(file)
@@ -32,29 +32,6 @@ def parse_t(data_file, gene_file, factors_file):
          key = int(row.pop('tf_id'))
          factors[key] = row
    return baskets,genes, factors
-
-def parse_transcription_files(data_filename, gene_file, factors_file):
-    baskets = {}
-    genes = {}
-    factors = {}
-    with open(data_filename, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            gene = int(row.pop('expgene'))
-            factor = int(row.pop('tf_id'))
-            baskets[gene] = {gene, factor}
-    with open(gene_file, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            id = int(row.pop('expgene'))
-            genes[id] = ",".join([row.pop('geneabbrev'), row.pop('experiment'), row.pop('species')])
-    with open(factors_file, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            id = int(row.pop('tf_id'))
-            factors[id] = row.pop('transfac')
-    return baskets, genes, factors
-
 
 def parse_name_file(filename):
     result = {}
@@ -127,6 +104,7 @@ def apriori(T, I, min_sup, supports):
     freq_sets = [[], [frozenset({i}) for i in I if support(T, {i}, supports) >= min_sup]]
     k = 2
     while freq_sets[k-1]:
+        print(freq_sets[k-1])
         candidates = candidates_gen(freq_sets[k-1], k-1)
         counts = {c: 0 for c in candidates}
         for _, basket in T.items():
