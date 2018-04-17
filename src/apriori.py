@@ -13,6 +13,27 @@ def parse_data_file(filename):
             baskets[int(row[0])] = set(map(lambda x: int(x), row[1:]))
     return baskets
 
+def parse_t(data_file,gene_file,factors_file):
+   baskets = {}
+   genes = {}
+   factors = {}
+   with open(data_file, 'r') as file:
+      reader = csv.DictReader(file)
+      #next(reader)
+      for row in reader:
+         gene = int(row.pop('expgene'))
+         factorlist = row.pop(None)
+         allfactors = []
+         for i in range(0,len(factorlist)-1,2):
+            allfactors.append(i)
+         baskets[gene] = set(allfactors)
+   with open(factors_file, 'r') as file:
+      reader = csv.DictReader(file)
+      for row in reader:
+         key = int(row.pop('tf_id'))
+         factors[key] = row
+   return baskets,genes, factors
+
 def parse_transcription_files(data_filename, gene_file, factors_file):
     baskets = {}
     genes = {}
@@ -230,7 +251,7 @@ def write_named_rules(filename, rules, names):
             file.write("({:03f}) {:>12}\n".format(r[0], rule_str))
 
 
-def plot(dataset, names, min_supp):
+def plot(baskets, names, min_supp):
     start_sup = 0.4  # when to start plot
     end_sup = 0.007 # when to end plot (eventually becomes too slow)
     start_conf = 1.0 # when to start plot
@@ -295,9 +316,29 @@ def parse_normal(args):
         write_named_rules("rules.txt", rules_w_conf, names)
         print("  -> wrote to rules.txt")
 
+def parse_ts(args):
+    baskets, genes, factors = parse_t(args.data_file, args.name_file, args.factors)
+    if args.plot:
+        plot(baskets, factors, args.min_supp)
+    
+    print("generating freq isets...")
+    supports = {}
+    items = frozenset(baskets.keys())
+    freq_isets = apriori(baskets, items, args.min_supp, supports)
+    sky_freq_isets = get_skyline(freq_isets)
+    freq_isets_w_support = [(support(baskets, frozenset(s), supports), s) for s in sky_freq_isets]
+    write_named_freq_isets("freq_isets.txt",freq_isets_w_support,factors)
+    print("  -> wrote to freq_isets.txt")
+
+    if args.rules:
+        print("generating rules...")
+        rules = gen_rules(sky_freq_isets, baskets, args.min_conf, supports)
+        rules_w_conf = [(confidence(baskets, r[0], r[1], supports), r) for r in rules]
+        write_named_rules("rules.txt", rules_w_conf, factors)
+        print("  -> wrote to rules.txt")
+
 def parse_transcriptions(args):
     baskets, genes, factors = parse_transcription_files(args.data_file, args.name_file, args.factors)
-
     if args.plot:
         plot(baskets, names, args.min_supp)
 
@@ -325,7 +366,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.factors:
-        parse_transcriptions(args)
+       parse_ts(args) 
+       #parse_transcriptions(args)
     else:
         parse_normal(args)
 
