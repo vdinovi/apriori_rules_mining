@@ -1,9 +1,0 @@
-Skyline Rules (8)
-(1.000000) {'Elk-1', 'HSF1_(long)', 'c-Rel'} --> {'HSF2'}
-(1.000000) {'Elk-1', 'HSF2', 'c-Rel'} --> {'HSF1_(long)'}
-(1.000000) {'p300', 'HSF1_(long)', 'Elk-1'} --> {'HSF2'}
-(1.000000) {'p300', 'Elk-1', 'HSF2'} --> {'HSF1_(long)'}
-(0.976744) {'HSF1_(long)', 'HSF2', 'c-Rel'} --> {'Elk-1'}
-(0.976744) {'p300', 'HSF1_(long)', 'HSF2'} --> {'Elk-1'}
-(0.954545) {'Elk-1', 'HSF1_(long)', 'HSF2'} --> {'c-Rel'}
-(0.954545) {'Elk-1', 'HSF1_(long)', 'HSF2'} --> {'p300'}

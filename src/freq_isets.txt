@@ -1,3 +1,0 @@
-Skyline Frequent Itemsets (2)
-(0.913043) {'Elk-1', 'HSF1_(long)', 'HSF2', 'c-Rel'}
-(0.913043) {'p300', 'HSF1_(long)', 'Elk-1', 'HSF2'}

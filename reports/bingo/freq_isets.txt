@@ -1,22 +1,21 @@
-Skyline Frequent Itemsets (21)
-(0.415638) {'Bancroft, Josiah'}
+Skyline Frequent Itemsets (20)
 (0.205761) {'Arden, Katherine'}
 (0.201646) {'Ball, Krista D. / Ball, K.'}
 (0.181070)     {'*N/A'}
 (0.160494) {'Butcher, Jim'}
-(0.139918) {'Bancroft, Josiah', 'Addison, Katherine / Monette, Sarah'}
+(0.139918) {'Addison, Katherine / Monette, Sarah', 'Bancroft, Josiah'}
 (0.127572) {'Bennett, Robert Jackson'}
 (0.119342) {'Bear, Elizabeth'}
 (0.115226) {'Anders, Charlie Jane'}
 (0.115226) {'Brennan, Marie', 'Bancroft, Josiah'}
-(0.106996) {'Bancroft, Josiah', 'Chambers, Becky'}
-(0.106996) {'Beaulieu, Bradley P.'}
-(0.106996) {'Bancroft, Josiah', 'Abercrombie, Joe'}
 (0.106996) {'Aaronovitch, Ben'}
-(0.102881) {'Brown, Pierce'}
+(0.106996) {'Beaulieu, Bradley P.'}
+(0.106996) {'Bancroft, Josiah', 'Chambers, Becky'}
+(0.106996) {'Bancroft, Josiah', 'Abercrombie, Joe'}
 (0.102881) {'Bardugo, Leigh'}
+(0.102881) {'Brown, Pierce'}
 (0.098765) {'Atwood, Margaret'}
 (0.094650) {'Bancroft, Josiah', 'Aaron, Rachel / Bach, Rachel'}
-(0.090535) {'Butler, Octavia E.'}
 (0.090535) {'Bujold, Lois McMaster'}
+(0.090535) {'Butler, Octavia E.'}
 (0.086420) {'Carriger, Gail'}

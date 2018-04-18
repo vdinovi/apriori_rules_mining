@@ -1,76 +1,26 @@
-Skyline Rules (75)
-(1.000000) {'Lemon Cookie', 'Raspberry Lemonade', 'Green Tea', 'Lemon Lemonade'} --> {'Raspberry Cookie'}
-(1.000000) {'Lemon Cookie', 'Raspberry Lemonade', 'Green Tea', 'Raspberry Cookie'} --> {'Lemon Lemonade'}
-(1.000000) {'Lemon Cookie', 'Raspberry Cookie', 'Green Tea', 'Lemon Lemonade'} --> {'Raspberry Lemonade'}
-(0.999357) {'Raspberry Lemonade', 'Raspberry Cookie', 'Green Tea', 'Lemon Lemonade'} --> {'Lemon Cookie'}
-(0.998074) {'Lemon Cookie', 'Raspberry Cookie', 'Green Tea'} --> {'Raspberry Lemonade'}
-(0.998074) {'Lemon Cookie', 'Raspberry Cookie', 'Green Tea'} --> {'Lemon Lemonade'}
-(0.997436) {'Raspberry Lemonade', 'Green Tea', 'Lemon Lemonade'} --> {'Raspberry Cookie'}
-(0.997399) {'Lemon Cookie', 'Raspberry Lemonade', 'Lemon Lemonade'} --> {'Raspberry Cookie'}
-(0.996795) {'Raspberry Lemonade', 'Green Tea', 'Lemon Lemonade'} --> {'Lemon Cookie'}
-(0.995327) {'Lemon Cookie', 'Raspberry Lemonade', 'Raspberry Cookie'} --> {'Lemon Lemonade'}
-(0.995247) {'Almond Twist', 'Hot Coffee', 'Apple Pie'} --> {'Coffee Eclair'}
-(0.994885) {'Raspberry Lemonade', 'Raspberry Cookie', 'Green Tea'} --> {'Lemon Lemonade'}
-(0.994249) {'Raspberry Cookie', 'Green Tea', 'Lemon Lemonade'} --> {'Raspberry Lemonade'}
-(0.994246) {'Lemon Cookie', 'Green Tea', 'Lemon Lemonade'} --> {'Raspberry Lemonade'}
-(0.994246) {'Raspberry Lemonade', 'Raspberry Cookie', 'Green Tea'} --> {'Lemon Cookie'}
-(0.994246) {'Lemon Cookie', 'Green Tea', 'Lemon Lemonade'} --> {'Raspberry Cookie'}
-(0.993830) {'Coffee Eclair', 'Hot Coffee', 'Apple Pie'} --> {'Almond Twist'}
-(0.993610) {'Raspberry Cookie', 'Green Tea', 'Lemon Lemonade'} --> {'Lemon Cookie'}
-(0.992926) {'Cherry Soda', 'Apple Danish', 'Apple Tart'} --> {'Apple Croissant'}
-(0.992888) {'Almond Twist', 'Coffee Eclair', 'Hot Coffee'} --> {'Apple Pie'}
-(0.992750) {'Raspberry Lemonade', 'Raspberry Cookie', 'Lemon Lemonade'} --> {'Lemon Cookie'}
-(0.992236) {'Lemon Cookie', 'Raspberry Cookie', 'Lemon Lemonade'} --> {'Raspberry Lemonade'}
-(0.991014) {'Cherry Soda', 'Apple Croissant', 'Apple Tart'} --> {'Apple Danish'}
-(0.990446) {'Lemon Cookie', 'Raspberry Lemonade', 'Green Tea'} --> {'Lemon Lemonade'}
-(0.990446) {'Lemon Cookie', 'Raspberry Lemonade', 'Green Tea'} --> {'Raspberry Cookie'}
-(0.989744) {'Cherry Soda', 'Apple Danish', 'Apple Croissant'} --> {'Apple Tart'}
+Skyline Rules (25)
+(1.000000) {'Lemon Lemonade', 'Green Tea', 'Lemon Cookie', 'Raspberry Lemonade'} --> {'Raspberry Cookie'}
+(1.000000) {'Green Tea', 'Lemon Cookie', 'Raspberry Lemonade', 'Raspberry Cookie'} --> {'Lemon Lemonade'}
+(1.000000) {'Lemon Lemonade', 'Green Tea', 'Lemon Cookie', 'Raspberry Cookie'} --> {'Raspberry Lemonade'}
+(0.999357) {'Lemon Lemonade', 'Green Tea', 'Raspberry Lemonade', 'Raspberry Cookie'} --> {'Lemon Cookie'}
+(0.995247) {'Apple Pie', 'Almond Twist', 'Hot Coffee'} --> {'Coffee Eclair'}
+(0.993830) {'Coffee Eclair', 'Apple Pie', 'Hot Coffee'} --> {'Almond Twist'}
+(0.992926) {'Cherry Soda', 'Apple Tart', 'Apple Danish'} --> {'Apple Croissant'}
+(0.992888) {'Coffee Eclair', 'Almond Twist', 'Hot Coffee'} --> {'Apple Pie'}
+(0.991014) {'Cherry Soda', 'Apple Tart', 'Apple Croissant'} --> {'Apple Danish'}
+(0.989744) {'Cherry Soda', 'Apple Croissant', 'Apple Danish'} --> {'Apple Tart'}
 (0.955377) {'Opera Cake', 'Apricot Danish'} --> {'Cherry Tart'}
-(0.947741) {'Cherry Tart', 'Opera Cake'} --> {'Apricot Danish'}
+(0.947741) {'Opera Cake', 'Cherry Tart'} --> {'Apricot Danish'}
 (0.939607) {'Walnut Cookie', 'Vanilla Frappuccino'} --> {'Chocolate Tart'}
-(0.936975) {'Chocolate Tart', 'Walnut Cookie'} --> {'Vanilla Frappuccino'}
+(0.936975) {'Walnut Cookie', 'Chocolate Tart'} --> {'Vanilla Frappuccino'}
 (0.936834) {'Blueberry Tart', 'Hot Coffee'} --> {'Apricot Croissant'}
-(0.935660) {'Almond Twist', 'Apple Pie'} --> {'Coffee Eclair'}
-(0.928812) {'Raspberry Lemonade', 'Raspberry Cookie'} --> {'Lemon Lemonade'}
 (0.928006) {'Apricot Croissant', 'Hot Coffee'} --> {'Blueberry Tart'}
-(0.924808) {'Raspberry Lemonade', 'Lemon Lemonade'} --> {'Raspberry Cookie'}
-(0.924569) {'Almond Twist', 'Coffee Eclair'} --> {'Apple Pie'}
 (0.923077) {'Single Espresso', 'Blackberry Tart'} --> {'Coffee Eclair'}
 (0.922242) {'Coffee Eclair', 'Single Espresso'} --> {'Blackberry Tart'}
-(0.921381) {'Lemon Cookie', 'Lemon Lemonade'} --> {'Raspberry Lemonade'}
-(0.920939) {'Lemon Cookie', 'Raspberry Lemonade'} --> {'Lemon Lemonade'}
-(0.920930) {'Coffee Eclair', 'Apple Pie'} --> {'Almond Twist'}
-(0.920498) {'Raspberry Lemonade', 'Lemon Lemonade'} --> {'Lemon Cookie'}
-(0.919086) {'Raspberry Cookie', 'Lemon Lemonade'} --> {'Raspberry Lemonade'}
-(0.909831) {'Raspberry Lemonade', 'Green Tea'} --> {'Raspberry Cookie'}
-(0.909444) {'Almond Twist', 'Hot Coffee'} --> {'Coffee Eclair'}
-(0.907504) {'Raspberry Lemonade', 'Green Tea'} --> {'Lemon Lemonade'}
-(0.907288) {'Almond Twist', 'Hot Coffee'} --> {'Apple Pie'}
-(0.905617) {'Green Tea', 'Lemon Lemonade'} --> {'Lemon Cookie'}
-(0.905458) {'Hot Coffee', 'Apple Pie'} --> {'Coffee Eclair'}
-(0.904168) {'Hot Coffee', 'Apple Pie'} --> {'Almond Twist'}
-(0.903524) {'Lemon Cookie', 'Green Tea'} --> {'Lemon Lemonade'}
-(0.903301) {'Green Tea', 'Lemon Lemonade'} --> {'Raspberry Lemonade'}
-(0.900922) {'Raspberry Cookie', 'Green Tea'} --> {'Raspberry Lemonade'}
-(0.900058) {'Lemon Cookie', 'Green Tea'} --> {'Raspberry Cookie'}
-(0.897465) {'Raspberry Cookie', 'Green Tea'} --> {'Lemon Cookie'}
-(0.891001) {'Coffee Eclair', 'Hot Coffee'} --> {'Almond Twist'}
-(0.890156) {'Coffee Eclair', 'Hot Coffee'} --> {'Apple Pie'}
-(0.813520) {'Almond Twist', 'Coffee Eclair', 'Apple Pie'} --> {'Hot Coffee'}
-(0.811163) {'Lemon Cookie', 'Raspberry Lemonade', 'Raspberry Cookie', 'Lemon Lemonade'} --> {'Green Tea'}
-(0.809053) {'Lemon Cookie', 'Raspberry Lemonade', 'Lemon Lemonade'} --> {'Green Tea'}
-(0.807373) {'Lemon Cookie', 'Raspberry Lemonade', 'Raspberry Cookie'} --> {'Green Tea'}
-(0.807109) {'Apple Tart', 'Apple Danish', 'Apple Croissant'} --> {'Cherry Soda'}
-(0.805800) {'Raspberry Lemonade', 'Raspberry Cookie', 'Lemon Lemonade'} --> {'Green Tea'}
-(0.804865) {'Lemon Cookie', 'Raspberry Cookie', 'Lemon Lemonade'} --> {'Green Tea'}
-(0.774234) {'Cherry Tart', 'Apricot Danish'} --> {'Opera Cake'}
-(0.764813) {'Almond Twist', 'Apple Pie'} --> {'Hot Coffee'}
-(0.757543) {'Almond Twist', 'Coffee Eclair'} --> {'Hot Coffee'}
+(0.813520) {'Coffee Eclair', 'Apple Pie', 'Almond Twist'} --> {'Hot Coffee'}
+(0.811163) {'Lemon Lemonade', 'Lemon Cookie', 'Raspberry Lemonade', 'Raspberry Cookie'} --> {'Green Tea'}
+(0.807109) {'Apple Tart', 'Apple Croissant', 'Apple Danish'} --> {'Cherry Soda'}
+(0.774234) {'Apricot Danish', 'Cherry Tart'} --> {'Opera Cake'}
 (0.754520) {'Apricot Croissant', 'Blueberry Tart'} --> {'Hot Coffee'}
-(0.753846) {'Coffee Eclair', 'Apple Pie'} --> {'Hot Coffee'}
-(0.752285) {'Raspberry Lemonade', 'Raspberry Cookie'} --> {'Green Tea'}
-(0.749760) {'Lemon Cookie', 'Lemon Lemonade'} --> {'Green Tea'}
-(0.747126) {'Raspberry Lemonade', 'Lemon Lemonade'} --> {'Green Tea'}
 (0.746979) {'Coffee Eclair', 'Blackberry Tart'} --> {'Single Espresso'}
-(0.746526) {'Lemon Cookie', 'Raspberry Cookie'} --> {'Green Tea'}
 (0.744160) {'Chocolate Tart', 'Vanilla Frappuccino'} --> {'Walnut Cookie'}
