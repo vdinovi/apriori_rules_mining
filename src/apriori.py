@@ -17,6 +17,13 @@ def parse_t(data_file, gene_file, factors_file):
    baskets = {}
    genes = {}
    factors = {}
+   factor_counts = {}
+   with open(factors_file, 'r') as file:
+      reader = csv.DictReader(file)
+      for row in reader:
+         key = int(row.pop('tf_id'))
+         factors[key] = row
+         factor_counts[key] = 0
    with open(data_file, 'r') as file:
       reader = csv.DictReader(file)
       for row in reader:
@@ -24,14 +31,10 @@ def parse_t(data_file, gene_file, factors_file):
          factorlist = row.pop(None)
          allfactors = []
          for i in range(0,len(factorlist)-1,2):
-             allfactors.append(int(factorlist[i]))
+            allfactors.append(int(factorlist[i]))
+            factor_counts[int(factorlist[i])] += 1
          baskets[gene] = set(allfactors)
-   with open(factors_file, 'r') as file:
-      reader = csv.DictReader(file)
-      for row in reader:
-         key = int(row.pop('tf_id'))
-         factors[key] = row
-   return baskets,genes, factors
+   return baskets,genes,factors,factor_counts
 
 def parse_name_file(filename):
     result = {}
@@ -276,7 +279,16 @@ def parse_normal(args):
         print("  -> wrote to rules.txt")
 
 def parse_ts(args):
-    baskets, genes, factors = parse_t(args.data_file, args.name_file, args.factors)
+    baskets,genes,factors,factor_counts = parse_t(args.data_file, args.name_file, args.factors)
+    
+    threshold = 46
+    freq_factors = []
+    for key in factor_counts:
+       if factor_counts[key] >= threshold:
+          freq_factors.append(key)
+          for basket in baskets:
+             basket.remove(key)
+
     if args.plot:
         plot(baskets, factors, args.min_supp)
     
