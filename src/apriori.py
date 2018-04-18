@@ -142,7 +142,7 @@ def gen_rules(F, T, min_conf, supports):
     return rules
 
 def plot_supp(plot_filename, text_filename, dataset, start_supp, end_supp):
-    dx = 0.002
+    dx = 0.005
     supp = start_supp
     items = frozenset(dataset.keys())
     min_supports = []
@@ -223,7 +223,6 @@ def write_named_rules(filename, rules, names):
                 named_left = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in r[1][0] }
                 named_right = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in r[1][1] }
             else:
-                pdb.set_trace()
                 named_left = { names[i] for i in r[1][0] }
                 named_right = { names[i] for i in r[1][1] }
  
@@ -242,8 +241,8 @@ def write_named_rules_transcription(filename, rules, names):
             file.write("({:03f}) {:>12}\n".format(r[0], rule_str))
 
 def plot(baskets, names, min_supp):
-    start_sup = 0.4  # when to start plot
-    end_sup = 0.007 # when to end plot (eventually becomes too slow)
+    start_sup = 0.95  # when to start plot
+    end_sup = 0.50 # when to end plot (eventually becomes too slow)
     start_conf = 1.0 # when to start plot
     end_conf = 0.3 # when to end plot
     print("plotting supports...")
@@ -326,7 +325,7 @@ if __name__ == "__main__":
 
     parser.add_argument("--factors", help="specificy this to the factors name file and include the gene file as name file in order to analyze transcriptions")
     parser.add_argument("--rules", action='store_true', help="specify to generate association rules")
-    parser.add_argument("--plot", action='store_true', help="specify to generate plots for min_supp and min_conf (warning: this makes the program very slow)")
+    parser.add_argument("--plot", action='store_true', help="specify to generate plots for min_supp and min_conf (warning: this makes the program very slow). Note that this also requires modifying the hardcoded plot ranges, else it may run extremely slowly or produce unneeded results.")
     args = parser.parse_args()
 
     if args.factors:

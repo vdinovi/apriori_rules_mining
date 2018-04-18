@@ -1,0 +1,29 @@
+Skyline Frequent Itemsets (28)
+(0.673913) {'C/EBPbeta', 'RFX2', 'HSF1_(long)', 'Elk-1', 'HSF2'}
+(0.673913) {'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'c-Rel', 'HSF2'}
+(0.673913) {'R1', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'c-Rel', 'GCF', 'HSF2'}
+(0.652174) {'HSF2', 'HSF1_(long)', 'Ets-1', 'c-Rel'}
+(0.652174) {'HSF2', 'Ets-1', 'HSF1_(long)', 'Elk-1'}
+(0.652174) {'IUF-1', 'GCF', 'RFX2', 'Elk-1'}
+(0.652174) {'p300', 'HSF2', 'Ets-1', 'HSF1_(long)'}
+(0.652174) {'HSF1_(long)', 'p300', 'HSF', 'GCF', 'HSF2'}
+(0.652174) {'C/EBPbeta', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'HSF2'}
+(0.652174) {'C/EBPbeta', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'c-Rel', 'HSF2'}
+(0.652174) {'RFX2', 'HSF1_(long)', 'ARP-1', 'p300', 'GCF', 'HSF2'}
+(0.652174) {'RFX2', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF2'}
+(0.652174) {'R1', 'HSF1_(long)', 'ARP-1', 'p300', 'HSF', 'HSF2'}
+(0.652174) {'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF', 'HSF2'}
+(0.652174) {'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF', 'HSF2'}
+(0.652174) {'IUF-1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'c-Rel', 'HSF2'}
+(0.652174) {'R1', 'HSF1_(long)', 'p300', 'HSF', 'c-Rel', 'HSF2'}
+(0.652174) {'IUF-1', 'RFX2', 'HSF1_(long)', 'p300', 'c-Rel', 'HSF2'}
+(0.652174) {'R1', 'RFX2', 'IUF-1', 'HSF1_(long)', 'c-Rel', 'HSF2'}
+(0.652174) {'R1', 'RFX2', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'HSF2'}
+(0.652174) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'c-Rel', 'HSF2'}
+(0.652174) {'R1', 'RFX2', 'HSF1_(long)', 'ARP-1', 'p300', 'c-Rel', 'HSF2'}
+(0.652174) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'HSF2'}
+(0.652174) {'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'HSF', 'c-Rel', 'HSF2'}
+(0.652174) {'C/EBPbeta', 'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel', 'HSF2'}
+(0.652174) {'R1', 'RFX2', 'IUF-1', 'HSF1_(long)', 'p300', 'GCF', 'HSF2'}
+(0.652174) {'C/EBPbeta', 'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'GCF', 'HSF2'}
+(0.652174) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel', 'GCF', 'HSF2'}

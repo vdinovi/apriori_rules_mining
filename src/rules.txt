@@ -1,0 +1,171 @@
+Skyline Rules (170)
+(1.000000) {'HSF1_(long)', 'Ets-1', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'HSF2', 'Ets-1', 'c-Rel'} --> {'HSF1_(long)'}
+(1.000000) {'Ets-1', 'HSF1_(long)', 'Elk-1'} --> {'HSF2'}
+(1.000000) {'HSF2', 'Ets-1', 'Elk-1'} --> {'HSF1_(long)'}
+(1.000000) {'p300', 'Ets-1', 'HSF1_(long)'} --> {'HSF2'}
+(1.000000) {'p300', 'HSF2', 'Ets-1'} --> {'HSF1_(long)'}
+(1.000000) {'p300', 'HSF', 'HSF1_(long)', 'GCF'} --> {'HSF2'}
+(1.000000) {'p300', 'HSF', 'HSF2', 'GCF'} --> {'HSF1_(long)'}
+(1.000000) {'GCF', 'HSF', 'HSF2', 'HSF1_(long)'} --> {'p300'}
+(1.000000) {'C/EBPbeta', 'HSF2', 'RFX2', 'HSF1_(long)'} --> {'Elk-1'}
+(1.000000) {'C/EBPbeta', 'RFX2', 'HSF1_(long)', 'Elk-1'} --> {'HSF2'}
+(1.000000) {'C/EBPbeta', 'HSF2', 'RFX2', 'Elk-1'} --> {'HSF1_(long)'}
+(1.000000) {'C/EBPbeta', 'HSF2', 'IUF-1', 'HSF1_(long)'} --> {'Elk-1'}
+(1.000000) {'C/EBPbeta', 'IUF-1', 'HSF1_(long)', 'Elk-1'} --> {'HSF2'}
+(1.000000) {'C/EBPbeta', 'HSF2', 'IUF-1', 'Elk-1'} --> {'HSF1_(long)'}
+(1.000000) {'C/EBPbeta', 'HSF1_(long)', 'ARP-1', 'c-Rel', 'HSF2'} --> {'Elk-1'}
+(1.000000) {'C/EBPbeta', 'Elk-1', 'ARP-1', 'c-Rel', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'C/EBPbeta', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'RFX2', 'ARP-1', 'p300', 'GCF', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'RFX2', 'HSF1_(long)', 'ARP-1', 'p300', 'GCF'} --> {'HSF2'}
+(1.000000) {'RFX2', 'HSF1_(long)', 'ARP-1', 'GCF', 'HSF2'} --> {'p300'}
+(1.000000) {'RFX2', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'p300'} --> {'HSF2'}
+(1.000000) {'RFX2', 'IUF-1', 'Elk-1', 'p300', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'ARP-1', 'p300', 'HSF', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'HSF1_(long)', 'ARP-1', 'p300', 'HSF'} --> {'HSF2'}
+(1.000000) {'R1', 'HSF1_(long)', 'ARP-1', 'HSF', 'HSF2'} --> {'p300'}
+(1.000000) {'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF'} --> {'HSF2'}
+(1.000000) {'R1', 'Elk-1', 'p300', 'HSF', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'HSF1_(long)', 'Elk-1', 'HSF', 'HSF2'} --> {'p300'}
+(1.000000) {'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF'} --> {'HSF2'}
+(1.000000) {'RFX2', 'Elk-1', 'p300', 'HSF', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'RFX2', 'HSF1_(long)', 'Elk-1', 'HSF', 'HSF2'} --> {'p300'}
+(1.000000) {'RFX2', 'IUF-1', 'Elk-1', 'c-Rel', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'RFX2', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'R1', 'HSF1_(long)', 'p300', 'HSF', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'R1', 'p300', 'HSF', 'c-Rel', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'HSF1_(long)', 'HSF', 'c-Rel', 'HSF2'} --> {'p300'}
+(1.000000) {'RFX2', 'IUF-1', 'p300', 'c-Rel', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'RFX2', 'IUF-1', 'HSF1_(long)', 'p300', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'R1', 'RFX2', 'IUF-1', 'c-Rel', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'RFX2', 'IUF-1', 'HSF1_(long)', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'R1', 'RFX2', 'IUF-1', 'HSF1_(long)', 'Elk-1'} --> {'HSF2'}
+(1.000000) {'R1', 'RFX2', 'IUF-1', 'Elk-1', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'RFX2', 'Elk-1', 'ARP-1', 'p300', 'c-Rel', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'R1', 'RFX2', 'Elk-1', 'ARP-1', 'c-Rel', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'R1', 'RFX2', 'ARP-1', 'p300', 'c-Rel', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'RFX2', 'HSF1_(long)', 'ARP-1', 'p300', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'R1', 'RFX2', 'Elk-1', 'ARP-1', 'p300', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300'} --> {'HSF2'}
+(1.000000) {'Elk-1', 'ARP-1', 'p300', 'HSF', 'c-Rel', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'HSF', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'HSF1_(long)', 'Elk-1', 'ARP-1', 'HSF', 'c-Rel', 'HSF2'} --> {'p300'}
+(1.000000) {'C/EBPbeta', 'R1', 'HSF1_(long)', 'p300', 'c-Rel', 'HSF2'} --> {'Elk-1'}
+(1.000000) {'C/EBPbeta', 'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel'} --> {'HSF2'}
+(1.000000) {'C/EBPbeta', 'R1', 'Elk-1', 'p300', 'c-Rel', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'RFX2', 'IUF-1', 'HSF1_(long)', 'p300', 'GCF'} --> {'HSF2'}
+(1.000000) {'R1', 'RFX2', 'IUF-1', 'p300', 'GCF', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'RFX2', 'IUF-1', 'HSF1_(long)', 'GCF', 'HSF2'} --> {'p300'}
+(1.000000) {'RFX2', 'IUF-1', 'HSF1_(long)', 'p300', 'GCF', 'HSF2'} --> {'R1'}
+(1.000000) {'R1', 'RFX2', 'IUF-1', 'HSF1_(long)', 'p300', 'HSF2'} --> {'GCF'}
+(1.000000) {'C/EBPbeta', 'R1', 'HSF1_(long)', 'p300', 'GCF', 'HSF2'} --> {'Elk-1'}
+(1.000000) {'C/EBPbeta', 'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'GCF'} --> {'HSF2'}
+(1.000000) {'C/EBPbeta', 'R1', 'Elk-1', 'p300', 'GCF', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'C/EBPbeta', 'R1', 'HSF1_(long)', 'Elk-1', 'GCF', 'HSF2'} --> {'p300'}
+(1.000000) {'C/EBPbeta', 'HSF1_(long)', 'Elk-1', 'p300', 'GCF', 'HSF2'} --> {'R1'}
+(1.000000) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'c-Rel', 'GCF', 'HSF2'} --> {'p300'}
+(1.000000) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel', 'GCF'} --> {'HSF2'}
+(1.000000) {'R1', 'RFX2', 'Elk-1', 'p300', 'c-Rel', 'GCF', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'R1', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'c-Rel', 'GCF', 'HSF2'} --> {'p300'}
+(1.000000) {'R1', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'c-Rel', 'HSF2'} --> {'GCF'}
+(1.000000) {'R1', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'c-Rel', 'GCF'} --> {'HSF2'}
+(1.000000) {'R1', 'IUF-1', 'Elk-1', 'ARP-1', 'p300', 'c-Rel', 'GCF', 'HSF2'} --> {'HSF1_(long)'}
+(1.000000) {'IUF-1', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'c-Rel', 'GCF', 'HSF2'} --> {'R1'}
+(0.968750) {'RFX2', 'HSF1_(long)', 'ARP-1', 'p300', 'c-Rel', 'HSF2'} --> {'Elk-1'}
+(0.968750) {'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'HSF2'} --> {'c-Rel'}
+(0.968750) {'R1', 'IUF-1', 'HSF1_(long)', 'ARP-1', 'p300', 'c-Rel', 'GCF', 'HSF2'} --> {'Elk-1'}
+(0.968750) {'R1', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'GCF', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'HSF2', 'Ets-1', 'HSF1_(long)'} --> {'c-Rel'}
+(0.967742) {'HSF2', 'Ets-1', 'HSF1_(long)'} --> {'Elk-1'}
+(0.967742) {'GCF', 'IUF-1', 'RFX2'} --> {'Elk-1'}
+(0.967742) {'HSF2', 'Ets-1', 'HSF1_(long)'} --> {'p300'}
+(0.967742) {'C/EBPbeta', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'RFX2', 'IUF-1', 'HSF1_(long)', 'p300', 'HSF2'} --> {'Elk-1'}
+(0.967742) {'RFX2', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'HSF2'} --> {'p300'}
+(0.967742) {'R1', 'HSF1_(long)', 'p300', 'HSF', 'HSF2'} --> {'ARP-1'}
+(0.967742) {'R1', 'HSF1_(long)', 'p300', 'HSF', 'HSF2'} --> {'Elk-1'}
+(0.967742) {'RFX2', 'HSF1_(long)', 'p300', 'HSF', 'HSF2'} --> {'Elk-1'}
+(0.967742) {'RFX2', 'IUF-1', 'HSF1_(long)', 'c-Rel', 'HSF2'} --> {'Elk-1'}
+(0.967742) {'RFX2', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'R1', 'HSF1_(long)', 'p300', 'HSF', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'RFX2', 'IUF-1', 'HSF1_(long)', 'p300', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'RFX2', 'IUF-1', 'HSF1_(long)', 'c-Rel', 'HSF2'} --> {'p300'}
+(0.967742) {'R1', 'RFX2', 'IUF-1', 'HSF1_(long)', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'RFX2', 'IUF-1', 'HSF1_(long)', 'c-Rel', 'HSF2'} --> {'R1'}
+(0.967742) {'R1', 'RFX2', 'IUF-1', 'HSF1_(long)', 'HSF2'} --> {'Elk-1'}
+(0.967742) {'RFX2', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'HSF2'} --> {'R1'}
+(0.967742) {'R1', 'RFX2', 'HSF1_(long)', 'ARP-1', 'c-Rel', 'HSF2'} --> {'Elk-1'}
+(0.967742) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'R1', 'RFX2', 'HSF1_(long)', 'ARP-1', 'p300', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'R1', 'RFX2', 'HSF1_(long)', 'ARP-1', 'c-Rel', 'HSF2'} --> {'p300'}
+(0.967742) {'R1', 'RFX2', 'HSF1_(long)', 'ARP-1', 'p300', 'HSF2'} --> {'Elk-1'}
+(0.967742) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'HSF2'} --> {'p300'}
+(0.967742) {'HSF1_(long)', 'ARP-1', 'p300', 'HSF', 'c-Rel', 'HSF2'} --> {'Elk-1'}
+(0.967742) {'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'HSF', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'HSF1_(long)', 'Elk-1', 'p300', 'HSF', 'c-Rel', 'HSF2'} --> {'ARP-1'}
+(0.967742) {'C/EBPbeta', 'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'C/EBPbeta', 'R1', 'HSF1_(long)', 'Elk-1', 'c-Rel', 'HSF2'} --> {'p300'}
+(0.967742) {'C/EBPbeta', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel', 'HSF2'} --> {'R1'}
+(0.967742) {'C/EBPbeta', 'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF2'} --> {'GCF'}
+(0.967742) {'R1', 'RFX2', 'HSF1_(long)', 'p300', 'c-Rel', 'GCF', 'HSF2'} --> {'Elk-1'}
+(0.967742) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'GCF', 'HSF2'} --> {'c-Rel'}
+(0.967742) {'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel', 'GCF', 'HSF2'} --> {'R1'}
+(0.939394) {'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'c-Rel', 'HSF2'} --> {'p300'}
+(0.939394) {'R1', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'c-Rel', 'GCF', 'HSF2'} --> {'IUF-1'}
+(0.937500) {'IUF-1', 'RFX2', 'Elk-1'} --> {'GCF'}
+(0.937500) {'HSF1_(long)', 'ARP-1', 'p300', 'HSF', 'HSF2'} --> {'R1'}
+(0.937500) {'HSF1_(long)', 'p300', 'HSF', 'c-Rel', 'HSF2'} --> {'R1'}
+(0.937500) {'RFX2', 'HSF1_(long)', 'ARP-1', 'p300', 'c-Rel', 'HSF2'} --> {'R1'}
+(0.937500) {'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'HSF2'} --> {'R1'}
+(0.937500) {'R1', 'RFX2', 'HSF1_(long)', 'p300', 'GCF', 'HSF2'} --> {'IUF-1'}
+(0.937500) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel', 'HSF2'} --> {'GCF'}
+(0.911765) {'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel', 'HSF2'} --> {'ARP-1'}
+(0.911765) {'R1', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel', 'GCF', 'HSF2'} --> {'ARP-1'}
+(0.909091) {'GCF', 'RFX2', 'Elk-1'} --> {'IUF-1'}
+(0.909091) {'C/EBPbeta', 'HSF1_(long)', 'Elk-1', 'c-Rel', 'HSF2'} --> {'ARP-1'}
+(0.909091) {'RFX2', 'HSF1_(long)', 'p300', 'GCF', 'HSF2'} --> {'ARP-1'}
+(0.909091) {'RFX2', 'HSF1_(long)', 'ARP-1', 'p300', 'HSF2'} --> {'GCF'}
+(0.909091) {'HSF1_(long)', 'Elk-1', 'p300', 'HSF', 'HSF2'} --> {'R1'}
+(0.909091) {'HSF1_(long)', 'Elk-1', 'p300', 'HSF', 'HSF2'} --> {'RFX2'}
+(0.909091) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'c-Rel', 'HSF2'} --> {'ARP-1'}
+(0.909091) {'RFX2', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'c-Rel', 'HSF2'} --> {'R1'}
+(0.909091) {'R1', 'RFX2', 'HSF1_(long)', 'p300', 'c-Rel', 'HSF2'} --> {'ARP-1'}
+(0.909091) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF2'} --> {'ARP-1'}
+(0.885714) {'C/EBPbeta', 'HSF2', 'HSF1_(long)', 'Elk-1'} --> {'RFX2'}
+(0.882353) {'p300', 'HSF', 'HSF2', 'HSF1_(long)'} --> {'GCF'}
+(0.882353) {'R1', 'RFX2', 'HSF1_(long)', 'c-Rel', 'HSF2'} --> {'IUF-1'}
+(0.882353) {'R1', 'RFX2', 'HSF1_(long)', 'Elk-1', 'HSF2'} --> {'IUF-1'}
+(0.857143) {'C/EBPbeta', 'HSF2', 'HSF1_(long)', 'Elk-1'} --> {'IUF-1'}
+(0.857143) {'RFX2', 'HSF1_(long)', 'p300', 'c-Rel', 'HSF2'} --> {'IUF-1'}
+(0.837838) {'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'c-Rel', 'HSF2'} --> {'RFX2'}
+(0.833333) {'GCF', 'IUF-1', 'Elk-1'} --> {'RFX2'}
+(0.833333) {'HSF1_(long)', 'ARP-1', 'p300', 'GCF', 'HSF2'} --> {'RFX2'}
+(0.833333) {'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF2'} --> {'IUF-1'}
+(0.833333) {'IUF-1', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF2'} --> {'RFX2'}
+(0.833333) {'RFX2', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF2'} --> {'HSF'}
+(0.833333) {'RFX2', 'HSF1_(long)', 'Elk-1', 'c-Rel', 'HSF2'} --> {'IUF-1'}
+(0.833333) {'IUF-1', 'HSF1_(long)', 'Elk-1', 'c-Rel', 'HSF2'} --> {'RFX2'}
+(0.833333) {'IUF-1', 'HSF1_(long)', 'p300', 'c-Rel', 'HSF2'} --> {'RFX2'}
+(0.833333) {'R1', 'IUF-1', 'HSF1_(long)', 'c-Rel', 'HSF2'} --> {'RFX2'}
+(0.833333) {'R1', 'IUF-1', 'HSF1_(long)', 'Elk-1', 'HSF2'} --> {'RFX2'}
+(0.833333) {'R1', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'c-Rel', 'HSF2'} --> {'RFX2'}
+(0.833333) {'R1', 'HSF1_(long)', 'ARP-1', 'p300', 'c-Rel', 'HSF2'} --> {'RFX2'}
+(0.833333) {'R1', 'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'HSF2'} --> {'RFX2'}
+(0.833333) {'R1', 'IUF-1', 'HSF1_(long)', 'p300', 'GCF', 'HSF2'} --> {'RFX2'}
+(0.833333) {'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel', 'GCF', 'HSF2'} --> {'RFX2'}
+(0.815789) {'HSF2', 'RFX2', 'HSF1_(long)', 'Elk-1'} --> {'C/EBPbeta'}
+(0.810811) {'HSF2', 'IUF-1', 'HSF1_(long)', 'Elk-1'} --> {'C/EBPbeta'}
+(0.810811) {'R1', 'HSF1_(long)', 'ARP-1', 'p300', 'HSF2'} --> {'HSF'}
+(0.810811) {'HSF1_(long)', 'Elk-1', 'ARP-1', 'p300', 'c-Rel', 'HSF2'} --> {'HSF'}
+(0.810811) {'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'GCF', 'HSF2'} --> {'C/EBPbeta'}
+(0.789474) {'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'c-Rel', 'HSF2'} --> {'C/EBPbeta'}
+(0.769231) {'p300', 'GCF', 'HSF2', 'HSF1_(long)'} --> {'HSF'}
+(0.769231) {'HSF1_(long)', 'Elk-1', 'ARP-1', 'c-Rel', 'HSF2'} --> {'C/EBPbeta'}
+(0.769231) {'R1', 'HSF1_(long)', 'Elk-1', 'p300', 'HSF2'} --> {'HSF'}
+(0.769231) {'R1', 'HSF1_(long)', 'p300', 'c-Rel', 'HSF2'} --> {'HSF'}
+(0.697674) {'HSF2', 'HSF1_(long)', 'c-Rel'} --> {'Ets-1'}
+(0.697674) {'p300', 'HSF2', 'HSF1_(long)'} --> {'Ets-1'}
+(0.681818) {'HSF2', 'HSF1_(long)', 'Elk-1'} --> {'Ets-1'}
