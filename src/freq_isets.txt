@@ -1,27 +1,3 @@
-Skyline Frequent Itemsets (26)
-(0.058000) {'Gongolais Cookie', 'Truffle Cake'}
-(0.056000) {'Apricot Tart'}
-(0.055000) {'Blueberry Danish'}
-(0.053000) {'Marzipan Cookie', 'Tuile Cookie'}
-(0.049000) {'Almond Croissant'}
-(0.049000) {'Strawberry Cake', 'Napoleon Cake'}
-(0.047000) {'Vanilla Meringue'}
-(0.044000) {'Ganache Cookie'}
-(0.042000) {'Chocolate Croissant'}
-(0.041000) {'Almond Tart'}
-(0.040000) {'Pecan Tart'}
-(0.040000) {'Lemon Tart', 'Lemon Cake'}
-(0.039000) {'Casino Cake', 'Chocolate Coffee'}
-(0.038000) {'Chocolate Meringue'}
-(0.038000) {'Cheese Croissant', 'Orange Juice'}
-(0.038000) {'Opera Cake', 'Cherry Tart', 'Apricot Danish'}
-(0.037000) {'Vanilla Eclair'}
-(0.034000) {'Chocolate Eclair'}
-(0.034000) {'Berry Tart', 'Bottled Water'}
-(0.032000) {'Blueberry Tart', 'Apricot Croissant', 'Hot Coffee'}
-(0.031000) {'Apple Tart', 'Apple Danish', 'Apple Croissant', 'Cherry Soda'}
-(0.026000) {'Almond Bear Claw'}
-(0.024000) {'Hot Coffee', 'Coffee Eclair', 'Almond Twist', 'Apple Pie'}
-(0.023000) {'Blackberry Tart', 'Single Espresso', 'Coffee Eclair'}
-(0.019000) {'Raspberry Cookie', 'Raspberry Lemonade', 'Green Tea', 'Lemon Lemonade', 'Lemon Cookie'}
-(0.018000) {'Vanilla Frappuccino', 'Walnut Cookie', 'Chocolate Tart'}
+Skyline Frequent Itemsets (2)
+(0.913043) {'Elk-1', 'HSF1_(long)', 'HSF2', 'c-Rel'}
+(0.913043) {'p300', 'HSF1_(long)', 'Elk-1', 'HSF2'}

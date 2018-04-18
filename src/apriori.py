@@ -107,7 +107,6 @@ def apriori(T, I, min_sup, supports):
     freq_sets = [[], [frozenset({i}) for i in I if support(T, {i}, supports) >= min_sup]]
     k = 2
     while freq_sets[k-1]:
-        print(freq_sets[k-1])
         candidates = candidates_gen(freq_sets[k-1], k-1)
         counts = {c: 0 for c in candidates}
         for _, basket in T.items():
@@ -210,10 +209,8 @@ def write_named_freq_isets_transcription(filename, freq_isets, genes, factors):
         freq_isets = sorted(freq_isets, key=lambda i: -i[0])
         file.write('Skyline Frequent Itemsets ({})\n'.format(len(freq_isets)))
         for s in freq_isets:
-            pass
-            #first = next(iter(names))
-            #named_set = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in s[1] }
-            #file.write("({:03f}) {:>12}\n".format(s[0], str(named_set)))
+            named_set = { factors[i]['transfac'] for i in s[1] }
+            file.write("({:03f}) {:>12}\n".format(s[0], str(named_set)))
 
 
 def write_named_rules(filename, rules, names):
@@ -226,12 +223,23 @@ def write_named_rules(filename, rules, names):
                 named_left = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in r[1][0] }
                 named_right = { names[i]['Flavor'] + ' ' + names[i]['Food'] for i in r[1][1] }
             else:
+                pdb.set_trace()
                 named_left = { names[i] for i in r[1][0] }
                 named_right = { names[i] for i in r[1][1] }
  
             rule_str = "{} --> {}".format(named_left, named_right)
             file.write("({:03f}) {:>12}\n".format(r[0], rule_str))
 
+def write_named_rules_transcription(filename, rules, names):
+    with open(filename, 'w') as file:
+        rules = sorted(rules, key=lambda r: -r[0])
+        file.write('Skyline Rules ({})\n'.format(len(rules)))
+        for r in rules:
+            named_left = { names[i]['transfac'] for i in r[1][0] }
+            named_right = { names[i]['transfac'] for i in r[1][1] }
+ 
+            rule_str = "{} --> {}".format(named_left, named_right)
+            file.write("({:03f}) {:>12}\n".format(r[0], rule_str))
 
 def plot(baskets, names, min_supp):
     start_sup = 0.4  # when to start plot
@@ -288,7 +296,7 @@ def parse_ts(args):
        if factor_counts[key] >= threshold:
           freq_factors.append(key)
           for basket in baskets:
-             basket.remove(key)
+             baskets[basket].remove(key)
 
     if args.plot:
         plot(baskets, factors, args.min_supp)
@@ -299,14 +307,14 @@ def parse_ts(args):
     freq_isets = apriori(baskets, items, args.min_supp, supports)
     sky_freq_isets = get_skyline(freq_isets)
     freq_isets_w_support = [(support(baskets, frozenset(s), supports), s) for s in sky_freq_isets]
-    write_named_freq_isets("freq_isets.txt",freq_isets_w_support,factors)
+    write_named_freq_isets_transcription("freq_isets.txt",freq_isets_w_support,factors,factors)
     print("  -> wrote to freq_isets.txt")
 
     if args.rules:
         print("generating rules...")
         rules = gen_rules(sky_freq_isets, baskets, args.min_conf, supports)
         rules_w_conf = [(confidence(baskets, r[0], r[1], supports), r) for r in rules]
-        write_named_rules("rules.txt", rules_w_conf, factors)
+        write_named_rules_transcription("rules.txt", rules_w_conf, factors)
         print("  -> wrote to rules.txt")
 
 if __name__ == "__main__":
